@@ -36,7 +36,7 @@ new class extends Component
                 <span class="theme-icon-active">
                     <i class="my-1"></i>
                 </span>
-                <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                <span class="d-none ms-2" id="bd-theme-text">Toggle theme</span>
                 </button>
                 <ul
                 class="dropdown-menu dropdown-menu-end"
