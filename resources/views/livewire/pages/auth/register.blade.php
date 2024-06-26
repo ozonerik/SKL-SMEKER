@@ -72,9 +72,11 @@ new #[Layout('layouts.guest')] class extends Component
                     </div> <!-- /.col -->
                 </div> <!--end::Row-->
             </form>
-            <p class="mb-0"> <a href="{{ route('login') }}" class="link-offset-1" wire:navigate class="text-center">
+            @if (Route::has('login'))
+            <p class="mb-0"> <a href="{{ route('login') }}" wire:navigate class="link-offset-1 text-center">
                     I already have a membership
                 </a> </p>
+            @endif
         </div> <!-- /.register-card-body -->
     </div>
 </div> <!-- /.register-box --> <!--begin::Third Party Plugin(OverlayScrollbars)-->

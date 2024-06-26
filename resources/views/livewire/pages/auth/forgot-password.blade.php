@@ -36,26 +36,33 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 
-<div>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+<div class="login-box">
+    <div class="login-logo"> <a href="{{ url('/') }}"><b>Admin</b>LTE</a> </div> <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+                    {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            </div>
+            <!-- Session Status -->
+            <x-auth-session-status :status="session('status')" />
+            <form wire:submit="sendPasswordResetLink">
+                <div class="input-group mb-3"> <input type="email" wire:model="email" id="email" class="form-control @error('form.email') is-invalid @enderror" placeholder="Email" name="email" required autofocus>
+                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
+                    @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-grid gap-2"> <button type="submit" class="btn btn-primary">{{ __('Email Password Reset Link') }}</button> </div>
+                    </div> <!-- /.col -->
+                </div> <!--end::Row-->
+            </form>
+            @if (Route::has('login'))
+            <p class="mb-0 text-center"> <a href="{{ route('login') }}" wire:navigate class="link-offset-1 ">
+                    Log in
+                </a> </p>
+            @endif
+        </div> <!-- /.login-card-body -->
     </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form wire:submit="sendPasswordResetLink">
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</div>
+</div> <!-- /.login-box --> <!--begin::Third Party Plugin(OverlayScrollbars)-->
