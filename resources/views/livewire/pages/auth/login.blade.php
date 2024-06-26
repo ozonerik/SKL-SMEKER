@@ -54,10 +54,10 @@ new #[Layout('layouts.guest')] class extends Component
                 </div> <!--end::Row-->
             </form>
             @if (Route::has('password.request'))
-            <p class="mb-1"> <a href="{{ route('password.request') }}" class="link-offset-1">I forgot my password</a> </p>
+            <p class="mb-1"> <a href="{{ route('password.request') }}" class="link-offset-1" wire:navigate>I forgot my password</a> </p>
             @endif
             @if (Route::has('register'))
-            <p class="mb-0"> <a href="{{ route('register') }}" class="link-offset-1 text-center">
+            <p class="mb-0"> <a href="{{ route('register') }}" class="link-offset-1 text-center" wire:navigate>
                     Register a new membership
                 </a> </p>
             @endif

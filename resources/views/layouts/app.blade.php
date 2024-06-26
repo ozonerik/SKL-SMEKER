@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="auto">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,6 @@
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         @vite(['resources/js/app.js'])
     </head>
-
     <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
         <div class="app-wrapper"> <!--begin::Header-->
             <livewire:layout.navigation />
