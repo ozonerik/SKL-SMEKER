@@ -86,7 +86,7 @@ new class extends Component
                     <li class="user-header text-bg-primary"> <img src="{{ asset('dist/assets/img/user2-160x160.jpg') }}" class="rounded-circle shadow" alt="User Image">
                         <p>
                             {{ Auth::user()->name }} - Web Developer
-                            <small>Member since Nov. 2023</small>
+                            <small>Member since {{ \Carbon\Carbon::parse(Auth::user()->created_at)->format('M. Y') }}</small>
                         </p>
                     </li> <!--end::User Image--> <!--begin::Menu Body-->
                     <li class="user-footer">
