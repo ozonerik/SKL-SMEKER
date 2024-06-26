@@ -4,7 +4,7 @@
  * Licensed under the Creative Commons Attribution 3.0 Unported License.
  */
 
-(() => {
+document.addEventListener("livewire:navigated", () => {
   'use strict'
 
   const getStoredTheme = () => localStorage.getItem('theme')
@@ -64,7 +64,7 @@
     }
   })
 
-  window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('livewire:navigated', () => {
     showActiveTheme(getPreferredTheme())
 
     document.querySelectorAll('[data-bs-theme-value]')
@@ -77,4 +77,4 @@
         })
       })
   })
-})()
+});
