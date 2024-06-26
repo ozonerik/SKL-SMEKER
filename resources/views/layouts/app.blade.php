@@ -113,7 +113,7 @@
                 scrollbarAutoHide: "leave",
                 scrollbarClickScroll: true,
             };
-            document.addEventListener("livewire:navigated", () => {
+            document.addEventListener("DOMContentLoaded", () => {
                 const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
                 if (
                     sidebarWrapper &&
@@ -127,7 +127,7 @@
                         },
                     });
                 }
-            }, { once: true });
+            });
         </script> <!--end::OverlayScrollbars Configure-->
         <script>
             // Color Mode Toggler

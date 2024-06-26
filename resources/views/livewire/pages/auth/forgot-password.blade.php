@@ -59,7 +59,7 @@ new #[Layout('layouts.guest')] class extends Component
                 </div> <!--end::Row-->
             </form>
             @if (Route::has('login'))
-            <p class="mb-0 text-center"> <a href="{{ route('login') }}" wire:navigate class="link-offset-1 ">
+            <p class="mb-0 text-center"> <a href="{{ route('login') }}" class="link-offset-1 ">
                     Log in
                 </a> </p>
             @endif
