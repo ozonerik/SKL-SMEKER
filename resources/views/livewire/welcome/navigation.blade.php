@@ -1,26 +1,29 @@
-<nav class="-mx-3 flex flex-1 justify-end">
-    @auth
-        <a
-            href="{{ url('/dashboard') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Dashboard
-        </a>
-    @else
-        <a
-            href="{{ route('login') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Log in
-        </a>
-
-        @if (Route::has('register'))
-            <a
-                href="{{ route('register') }}"
-                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-            >
-                Register
-            </a>
-        @endif
-    @endauth
+<!-- Fixed navbar -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">SKL - SMEKER</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+        @auth
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">    
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url('/dashboard') }}">Dashboard</a>
+            </li>
+        </ul>
+        @else
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{ route('login') }}">Log in</a>
+            </li>
+            @if (Route::has('register'))
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{ route('register') }}">Register</a>
+            </li>
+            @endif
+        </ul>
+        @endauth
+        </div>
+    </div>
 </nav>
