@@ -20,7 +20,7 @@
 
         <!-- Scripts -->
         <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}"><!--end::Required Plugin(AdminLTE)-->
-        <link rel="stylesheet" href="{{ asset('css/custom.css') }}"><!--end::Required Plugin(AdminLTE)-->
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         @vite(['resources/js/app.js'])
     </head>
     <body class="{{ Route::currentRouteName() == 'login' ? 'login-page' : (Route::currentRouteName() == 'register' ? 'register-page' : 'login-page') }} bg-body-secondary">

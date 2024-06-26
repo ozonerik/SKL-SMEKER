@@ -38,42 +38,70 @@ new class extends Component
     }
 }; ?>
 
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Update Password') }}
-        </h2>
+<div class="card mb-5">
+    <div class="card-header">
+        <h3 class="card-title">{{ __('Update Password') }}</h3>
+        <div class="card-tools"> <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> <i data-lte-icon="expand" class="bi bi-plus-lg"></i> <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> </button> <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove"> <i class="bi bi-x-lg"></i> </button> </div>
+    </div>
+    <div class="card-body">
+        <form wire:submit="updatePassword">
+            <div class="mb-3"> 
+                <label for="update_password_current_password" class="form-label">Current Password</label>
+                <div class="input-group">
+                    <input type="password" wire:model="current_password" id="update_password_current_password" class="form-control @error('current_password') is-invalid @enderror" placeholder="Current Password" autocomplete="current-password">
+                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
+                </div>
+                @error('current_password')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3"> 
+                <label for="update_password_password" class="form-label">New Password</label>
+                <div class="input-group">
+                    <input type="password" wire:model="password" id="update_password_password" class="form-control @error('password') is-invalid @enderror" placeholder="New Password" autocomplete="new-password">
+                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
+                </div>
+                @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3"> 
+                <label for="update_password_password_confirmation" class="form-label">Confirm Password</label>
+                <div class="input-group">
+                    <input type="password" wire:model="password_confirmation" id="update_password_password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Confirm Password" autocomplete="new-password">
+                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
+                </div>
+                @error('password_confirmation')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="row">
+                @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
+                    <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
+                        <p class="mt-2">
+                            {{ __('Your email address is unverified.') }}
+                            <button wire:click.prevent="sendVerification" class="btn btn-success">
+                                {{ __('Click here to re-send the verification email.') }}
+                            </button>
+                        </p>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
-        </p>
-    </header>
-
-    <form wire:submit="updatePassword" class="mt-6 space-y-6">
-        <div>
-            <x-input-label for="update_password_current_password" :value="__('Current Password')" />
-            <x-text-input wire:model="current_password" id="update_password_current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />
-            <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
-        </div>
-
-        <div>
-            <x-input-label for="update_password_password" :value="__('New Password')" />
-            <x-text-input wire:model="password" id="update_password_password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <div>
-            <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input wire:model="password_confirmation" id="update_password_password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            <x-action-message class="me-3" on="password-updated">
-                {{ __('Saved.') }}
-            </x-action-message>
-        </div>
-    </form>
-</section>
+                        @if (session('status') === 'verification-link-sent')
+                            <p class="mt-2">
+                                {{ __('A new verification link has been sent to your email address.') }}
+                            </p>
+                        @endif
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="float-end"> <button type="submit" class="btn btn-primary">{{ __('Save') }}</button> </div>
+                </div> <!-- /.col -->
+            </div> <!--end::Row-->
+        </form>
+    </div> <!-- /.card-body -->
+    <div class="card-footer">
+        {{ __('Ensure your account is using a long, random password to stay secure.') }}
+    </div> <!-- /.card-footer-->
+</div> <!-- /.card -->

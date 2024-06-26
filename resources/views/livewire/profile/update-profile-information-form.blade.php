@@ -62,54 +62,60 @@ new class extends Component
     }
 }; ?>
 
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Profile Information') }}
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
-    </header>
-
-    <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
-        </div>
-
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" name="email" type="email" class="mt-1 block w-full" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
-
-            @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
-                        {{ __('Your email address is unverified.') }}
-
-                        <button wire:click.prevent="sendVerification" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
+<div class="card mb-5">
+    <div class="card-header">
+        <h3 class="card-title">{{ __('Profile Information') }}</h3>
+        <div class="card-tools"> <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> <i data-lte-icon="expand" class="bi bi-plus-lg"></i> <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> </button> <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove"> <i class="bi bi-x-lg"></i> </button> </div>
+    </div>
+    <div class="card-body">
+        <form wire:submit="updateProfileInformation">
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <div class="input-group">
+                    <input type="text" wire:model="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Full Name" required autofocus autocomplete="name">
+                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
                 </div>
-            @endif
-        </div>
+                @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="input-group mb-3"> 
+                <label for="email" class="form-label">Email address</label>
+                <div class="input-group">
+                    <input type="email" wire:model="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" required autocomplete="username">
+                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
+                </div>
+                @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div> <!--begin::Row-->
+            <div class="row">
+                @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
+                    <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
+                        <p class="mt-2">
+                            {{ __('Your email address is unverified.') }}
+                            <button wire:click.prevent="sendVerification" class="btn btn-success">
+                                {{ __('Click here to re-send the verification email.') }}
+                            </button>
+                        </p>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            <x-action-message class="me-3" on="profile-updated">
-                {{ __('Saved.') }}
-            </x-action-message>
-        </div>
-    </form>
-</section>
+                        @if (session('status') === 'verification-link-sent')
+                            <p class="mt-2">
+                                {{ __('A new verification link has been sent to your email address.') }}
+                            </p>
+                        @endif
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="float-end"> <button type="submit" class="btn btn-primary">{{ __('Save') }}</button> </div>
+                </div> <!-- /.col -->
+            </div> <!--end::Row-->
+        </form>
+    </div> <!-- /.card-body -->
+    <div class="card-footer">
+        {{ __("Update your account's profile information and email address.") }}
+    </div> <!-- /.card-footer-->
+</div> <!-- /.card -->
