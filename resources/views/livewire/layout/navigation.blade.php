@@ -85,12 +85,12 @@ new class extends Component
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end"> <!--begin::User Image-->
                     <li class="user-header text-bg-primary"> <img src="{{ asset('dist/assets/img/user2-160x160.jpg') }}" class="rounded-circle shadow" alt="User Image">
                         <p>
-                            {{ Auth::user()->name }} - Web Developer
+                            {{ Auth::user()->name }} - {{ \Illuminate\Support\Str::of(Auth::user()->getRoleNames()->implode(''))->ucfirst() }}
                             <small>Member since {{ \Carbon\Carbon::parse(Auth::user()->created_at)->format('M. Y') }}</small>
                         </p>
                     </li> <!--end::User Image--> <!--begin::Menu Body-->
                     <li class="user-footer">
-                        <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
+                        <a href="{{ route('profile') }}" class="btn btn-default btn-flat" wire:navigate>Profile</a>
                         <button wire:click="logout" class="btn btn-default btn-flat float-end">Log Out</button>
                     </li> <!--end::Menu Footer-->
                 </ul>

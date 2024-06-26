@@ -36,7 +36,7 @@
                 scrollbarAutoHide: "leave",
                 scrollbarClickScroll: true,
             };
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("livewire:navigated", () => {
                 const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
                 if (
                     sidebarWrapper &&
@@ -50,7 +50,7 @@
                         },
                     });
                 }
-            });
+            }, { once: true });
         </script> <!--end::OverlayScrollbars Configure--> <!--end::Script-->
     </body><!--end::Body--> 
 </html>
