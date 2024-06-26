@@ -41,7 +41,8 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <a href="#" class="nav-link" wire:navigate> 
+                                            <i class="nav-icon bi bi-circle"></i>
                                             <p>Dashboard v1</p>
                                         </a>
                                     </li>
@@ -55,7 +56,8 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item"> 
-                                        <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <a href="#" class="nav-link" wire:navigate> 
+                                            <i class="nav-icon bi bi-circle"></i>
                                             <p>Small Box</p>
                                         </a> 
                                     </li>
@@ -102,10 +104,10 @@
             <!--end::Copyright-->
         </footer> <!--end::Footer-->
         </div> <!--end::App Wrapper--> <!--begin::Script--> <!--begin::Third Party Plugin(OverlayScrollbars)-->
-        <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-H2VM7BKda+v2Z4+DRy69uknwxjyDRhszjXFhsL4gD3w=" crossorigin="anonymous"></script> <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha256-whL0tQWoY1Ku1iskqPFvmZ+CHsvmRWx/PIoEvIeWh4I=" crossorigin="anonymous"></script> <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha256-YMa+wAM6QkVyz999odX7lPRxkoYAan8suedu4k2Zur8=" crossorigin="anonymous"></script> <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-        <script src="{{ asset('dist/js/adminlte.js') }}"></script> <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+        <script data-navigate-once src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-H2VM7BKda+v2Z4+DRy69uknwxjyDRhszjXFhsL4gD3w=" crossorigin="anonymous"></script> <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
+        <script data-navigate-once src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha256-whL0tQWoY1Ku1iskqPFvmZ+CHsvmRWx/PIoEvIeWh4I=" crossorigin="anonymous"></script> <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
+        <script data-navigate-once src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha256-YMa+wAM6QkVyz999odX7lPRxkoYAan8suedu4k2Zur8=" crossorigin="anonymous"></script> <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
+        <script data-navigate-once src="{{ asset('dist/js/adminlte.js') }}"></script> <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 console.log("DOMContentLoaded");
@@ -116,14 +118,14 @@
                 console.log("livewire:navigated");
             }, { once: true });
         </script>
-        <script>
+        <script data-navigate-once>
             const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
             const Default = {
                 scrollbarTheme: "os-theme-light",
                 scrollbarAutoHide: "leave",
                 scrollbarClickScroll: true,
             };
-            document.addEventListener("DOMContentLoaded", () => {
+            document.addEventListener("livewire:navigated", () => {
                 const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
                 if (
                     sidebarWrapper &&
@@ -138,10 +140,10 @@
                     });
                 }
             });
-        </script> <!--end::OverlayScrollbars Configure-->
+        </script> <!--end::OverlayScrollbars Configure--> <!--end::Script-->
         <script>
             // Color Mode Toggler
-            document.addEventListener("DOMContentLoaded", () => {
+            document.addEventListener("livewire:navigated", () => {
                 "use strict";
 
                 const storedTheme = localStorage.getItem("theme");
