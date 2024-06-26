@@ -66,12 +66,12 @@ new class extends Component
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-            </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-danger">Delete Account</button>
         </div>
+        </form>
     </div>
 
 </div> <!-- /.card -->
