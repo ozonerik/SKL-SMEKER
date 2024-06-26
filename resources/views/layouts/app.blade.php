@@ -107,6 +107,16 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha256-YMa+wAM6QkVyz999odX7lPRxkoYAan8suedu4k2Zur8=" crossorigin="anonymous"></script> <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
         <script src="{{ asset('dist/js/adminlte.js') }}"></script> <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
         <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                console.log("DOMContentLoaded");
+            });
+        </script>
+        <script>
+            document.addEventListener("livewire:navigated", () => {
+                console.log("livewire:navigated");
+            }, { once: true });
+        </script>
+        <script>
             const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
             const Default = {
                 scrollbarTheme: "os-theme-light",
@@ -131,7 +141,7 @@
         </script> <!--end::OverlayScrollbars Configure-->
         <script>
             // Color Mode Toggler
-            (() => {
+            document.addEventListener("DOMContentLoaded", () => {
                 "use strict";
 
                 const storedTheme = localStorage.getItem("theme");
@@ -203,21 +213,19 @@
                         }
                     });
 
-                window.addEventListener("DOMContentLoaded", () => {
-                    showActiveTheme(getPreferredTheme());
+                showActiveTheme(getPreferredTheme());
 
-                    for (const toggle of document.querySelectorAll(
-                            "[data-bs-theme-value]"
-                        )) {
-                        toggle.addEventListener("click", () => {
-                            const theme = toggle.getAttribute("data-bs-theme-value");
-                            localStorage.setItem("theme", theme);
-                            setTheme(theme);
-                            showActiveTheme(theme, true);
-                        });
-                    }
-                });
-            })();
+                for (const toggle of document.querySelectorAll(
+                        "[data-bs-theme-value]"
+                    )) {
+                    toggle.addEventListener("click", () => {
+                        const theme = toggle.getAttribute("data-bs-theme-value");
+                        localStorage.setItem("theme", theme);
+                        setTheme(theme);
+                        showActiveTheme(theme, true);
+                    });
+                }
+            });
         </script> <!--end::Script-->
     </body>
 </html>
