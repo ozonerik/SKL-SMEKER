@@ -16,7 +16,7 @@ new class extends Component
     }
 }; ?>
 <!-- Fixed navbar -->
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md fixed-top bg-body-secondary" data-bs-theme="dark">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}" wire:navigate>SKL - SMEKER</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
