@@ -36,7 +36,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div class="login-box">
-    <div class="login-logo"> <a href="{{ url('/') }}"><b>Admin</b>LTE</a> </div> <!-- /.login-logo -->
+    <div class="login-logo"> <a href="{{ url('/') }}" wire:navigate><b>Admin</b>LTE</a> </div> <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
             <div class="mb-4 text-justify">

@@ -37,7 +37,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div class="register-box">
-    <div class="register-logo"> <a href="{{ url('/') }}"><b>Admin</b>LTE</a> </div> <!-- /.register-logo -->
+    <div class="register-logo"> <a href="{{ url('/') }}" wire:navigate><b>Admin</b>LTE</a> </div> <!-- /.register-logo -->
     <div class="card">
         <div class="card-body register-card-body">
             <p class="register-box-msg">Register a new membership</p>
