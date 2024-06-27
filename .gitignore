@@ -18,3 +18,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/old
+/*/old
+/*/*/old
+/*/*/*/old
+/*/*/*/*/old
+/*/*/*/*/*/old
