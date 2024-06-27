@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 @endif
-                @if(in_array(Route::currentRouteName(),['dashboard']))
+                @if( (Route::currentRouteName() != 'password.confirm') || (Route::currentRouteName() != 'verification.notice') )
                 <li class="nav-item"> 
                     <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard')?'active':'' }}" wire:navigate> 
                         <i class="nav-icon bi bi-speedometer"></i>
@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 @endif
-                @if(in_array(Route::currentRouteName(),['adminpage','optpage','userpage']))
+                @if( (Route::currentRouteName() != 'password.confirm') || (Route::currentRouteName() != 'verification.notice') )
                 <li class="nav-item {{ in_array(Route::currentRouteName(),['adminpage','optpage','userpage'])?'menu-open':'' }} "> 
                     <a href="#" class="nav-link {{ in_array(Route::currentRouteName(),['adminpage','optpage','userpage'])?'active':'' }}"> 
                     <i class="nav-icon bi bi-file-earmark-fill"></i>
@@ -62,6 +62,14 @@
                         </li>
                         @endrole
                     </ul>
+                </li>
+                @endif
+                @if( (Route::currentRouteName() != 'password.confirm') || (Route::currentRouteName() != 'verification.notice') )
+                <li class="nav-item"> 
+                    <a href="{{ route('profile') }}" class="nav-link {{ request()->routeIs('profile')?'active':'' }}" wire:navigate> 
+                        <i class="nav-icon bi bi-person-circle"></i>
+                        <p> Profile </p>
+                    </a>
                 </li>
                 @endif
             </ul> <!--end::Sidebar Menu-->
