@@ -14,7 +14,7 @@
         if (document.readyState === 'loading') {
             // add listener on the first call when the document is in loading state
             if (!domContentLoadedCallbacks.length) {
-                document.addEventListener('DOMContentLoaded', () => {
+                document.addEventListener('livewire:navigated', () => {
                     for (const callback of domContentLoadedCallbacks) {
                         callback();
                     }
