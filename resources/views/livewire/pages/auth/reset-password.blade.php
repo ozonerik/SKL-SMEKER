@@ -70,15 +70,15 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div class="login-box">
-    <div class="login-logo"> <a href="{{ url('/') }}" wire:navigate><b>Admin</b>LTE</a> </div> <!-- /.login-logo -->
+    <x-loginlogo />
     <div class="card">
-        <div class="card-body login-card-body">
-            <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+        <form wire:submit="resetPassword">
+            <div class="card-body login-card-body">
+                <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
                     {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-            </div>
-            <!-- Session Status -->
-            <x-auth-session-status :status="session('status')" />
-            <form wire:submit="resetPassword">
+                </div>
+                <!-- Session Status -->
+                <x-auth-session-status :status="session('status')" />
                 <div class="input-group mb-3"> <input type="email" wire:model="email" id="email" class="form-control @error('form.email') is-invalid @enderror" placeholder="Email" name="email" required autofocus autocomplete="username">
                     <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
                     @error('email')
@@ -99,10 +99,12 @@ new #[Layout('layouts.guest')] class extends Component
                 </div> <!--begin::Row-->
                 <div class="row">
                     <div class="col-12">
-                        <div class="d-grid gap-2"> <button type="submit" class="btn btn-primary">{{ __('Reset Password') }}</button> </div>
+                        <div class="d-grid gap-2"> 
+                            <button type="submit" class="btn btn-primary">{{ __('Reset Password') }}</button> 
+                        </div>
                     </div> <!-- /.col -->
                 </div> <!--end::Row-->
-            </form>
-        </div> <!-- /.login-card-body -->
+            </div> <!-- /.login-card-body -->
+        </form>
     </div>
 </div> <!-- /.login-box --> <!--begin::Third Party Plugin(OverlayScrollbars)-->

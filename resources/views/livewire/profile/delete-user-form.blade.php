@@ -49,8 +49,8 @@ new class extends Component
             <h1 class="modal-title fs-5" id="DeleteAccountLabel">Delete Account</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-            <form wire:submit="deleteUser" class="p-6">
+        <form wire:submit="deleteUser">
+            <div class="modal-body">
                 <h2>
                     {{ __('Are you sure you want to delete your account?') }}
                 </h2>
@@ -66,11 +66,11 @@ new class extends Component
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-danger">Delete Account</button>
-        </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger">Delete Account</button>
+            </div>
         </form>
     </div>
 

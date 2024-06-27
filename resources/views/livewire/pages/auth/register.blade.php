@@ -37,11 +37,11 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div class="register-box">
-    <div class="register-logo"> <a href="{{ url('/') }}" wire:navigate><b>Admin</b>LTE</a> </div> <!-- /.register-logo -->
+    <x-loginlogo />
     <div class="card">
-        <div class="card-body register-card-body">
-            <p class="register-box-msg">Register a new membership</p>
-            <form wire:submit="register">
+        <form wire:submit="register">
+            <div class="card-body register-card-body">
+                <p class="register-box-msg">Register a new membership</p>
                 <div class="input-group mb-3"> <input type="text" class="form-control  @error('name') is-invalid @enderror" placeholder="Full Name" wire:model="name" id="name" name="name" required autofocus autocomplete="name">
                     <div class="input-group-text"> <span class="bi bi-person"></span> </div>
                     @error('name')
@@ -71,12 +71,14 @@ new #[Layout('layouts.guest')] class extends Component
                         <div class="d-grid gap-2"> <button type="submit" class="btn btn-primary">Register</button> </div>
                     </div> <!-- /.col -->
                 </div> <!--end::Row-->
-            </form>
-            @if (Route::has('login'))
-            <p class="mb-0"> <a href="{{ route('login') }}" class="link-offset-1 text-center" wire:navigate>
-                    I already have a membership
-                </a> </p>
-            @endif
-        </div> <!-- /.register-card-body -->
+                @if (Route::has('login'))
+                <p class="mb-0 mt-1"> 
+                    <a href="{{ route('login') }}" class="link-offset-1 text-center" wire:navigate>
+                        I already have a membership
+                    </a> 
+                </p>
+                @endif
+            </div> <!-- /.register-card-body -->
+        </form>
     </div>
 </div> <!-- /.register-box --> <!--begin::Third Party Plugin(OverlayScrollbars)-->

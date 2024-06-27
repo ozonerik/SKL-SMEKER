@@ -43,8 +43,8 @@ new class extends Component
         <h3 class="card-title">{{ __('Update Password') }}</h3>
         <div class="card-tools"> <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> <i data-lte-icon="expand" class="bi bi-plus-lg"></i> <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> </button> <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove"> <i class="bi bi-x-lg"></i> </button> </div>
     </div>
-    <div class="card-body">
-        <form wire:submit="updatePassword">
+    <form wire:submit="updatePassword">
+        <div class="card-body">
             <div class="mb-3"> 
                 <label for="update_password_current_password" class="form-label">Current Password</label>
                 <div class="input-group">
@@ -99,8 +99,8 @@ new class extends Component
                     <div class="float-end"> <button type="submit" class="btn btn-primary">{{ __('Save') }}</button> </div>
                 </div> <!-- /.col -->
             </div> <!--end::Row-->
-        </form>
-    </div> <!-- /.card-body -->
+        </div> <!-- /.card-body -->
+    </form>
     <div class="card-footer">
         {{ __('Ensure your account is using a long, random password to stay secure.') }}
     </div> <!-- /.card-footer-->
