@@ -1,3 +1,20 @@
+<?php
+
+use App\Livewire\Actions\Logout;
+use Livewire\Volt\Component;
+
+new class extends Component
+{
+    /**
+     * Log the current user out of the application.
+     */
+    public function logout(Logout $logout): void
+    {
+        $logout();
+
+        $this->redirect('/', navigate: true);
+    }
+}; ?>
 <!-- Fixed navbar -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
@@ -10,6 +27,11 @@
         <ul class="navbar-nav me-auto mb-2 mb-md-0">    
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{ url('/dashboard') }}" wire:navigate>Dashboard</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <button class="nav-link" wire:click="logout" aria-current="page" >Logout</button>
             </li>
         </ul>
         @else
