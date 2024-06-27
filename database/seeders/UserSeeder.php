@@ -32,5 +32,21 @@ class UserSeeder extends Seeder
         ]);
         $user->assignRole($role1);
 
+        $user = User::factory()->create([
+            'name' => 'Opt User',
+            'email' => 'opt@test.id',
+            'password' => bcrypt('123456789'),
+            'email_verified_at' => now(),
+        ]);
+        $user->assignRole($role2);
+
+        $user = User::factory()->create([
+            'name' => 'General User',
+            'email' => 'user@test.id',
+            'password' => bcrypt('123456789'),
+            'email_verified_at' => now(),
+        ]);
+        $user->assignRole($role3);
+
     }
 }

@@ -3,34 +3,45 @@
     <div class="sidebar-wrapper">
         <nav class="mt-2"> <!--begin::Sidebar Menu-->
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
-                <li class="nav-item menu-open"> <a href="#" class="nav-link active"> <i class="nav-icon bi bi-speedometer"></i>
-                        <p>
-                            Dashboard
-                            <i class="nav-arrow bi bi-chevron-right"></i>
-                        </p>
+                <li class="nav-item"> 
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard')?'active':'' }}" wire:navigate> 
+                        <i class="nav-icon bi bi-speedometer"></i>
+                        <p> Dashboard </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" wire:navigate> 
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Dashboard v1</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
-                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-box-seam-fill"></i>
+                <li class="nav-item {{ in_array(Route::currentRouteName(),['adminpage','optpage','userpage'])?'menu-open':'' }} "> 
+                    <a href="#" class="nav-link {{ in_array(Route::currentRouteName(),['adminpage','optpage','userpage'])?'active':'' }}"> 
+                    <i class="nav-icon bi bi-file-earmark-fill"></i>
                         <p>
-                            Widgets
+                            Halaman
                             <i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @hasanyrole('admin')
                         <li class="nav-item"> 
-                            <a href="#" class="nav-link" wire:navigate> 
+                            <a href="{{ route('adminpage') }}" class="nav-link {{ request()->routeIs('adminpage')?'active':'' }}" wire:navigate> 
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Small Box</p>
+                                <p>Admin</p>
                             </a> 
                         </li>
+                        @endrole
+                        @hasanyrole('admin|operator')
+                        <li class="nav-item"> 
+                            <a href="{{ route('optpage') }}" class="nav-link {{ request()->routeIs('optpage')?'active':'' }}" wire:navigate> 
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Operator</p>
+                            </a> 
+                        </li>
+                        @endrole
+                        @hasanyrole('admin|operator|user')
+                        <li class="nav-item"> 
+                            <a href="{{ route('userpage') }}" class="nav-link {{ request()->routeIs('userpage')?'active':'' }}" wire:navigate> 
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>User</p>
+                            </a> 
+                        </li>
+                        @endrole
                     </ul>
                 </li>
             </ul> <!--end::Sidebar Menu-->
