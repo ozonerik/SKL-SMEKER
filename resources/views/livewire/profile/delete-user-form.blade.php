@@ -61,7 +61,7 @@ new class extends Component
 
                 <div class="input-group mt-6">
                     <input type="password" wire:model="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" autofocus>
-                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
+                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
                     @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

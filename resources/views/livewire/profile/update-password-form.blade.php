@@ -49,7 +49,7 @@ new class extends Component
                 <label for="update_password_current_password" class="form-label">Current Password</label>
                 <div class="input-group">
                     <input type="password" wire:model="current_password" id="update_password_current_password" class="form-control @error('current_password') is-invalid @enderror" placeholder="Current Password" autocomplete="current-password">
-                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
+                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
                 </div>
                 @error('current_password')
                 <div class="invalid-feedback">{{ $message }}</div>

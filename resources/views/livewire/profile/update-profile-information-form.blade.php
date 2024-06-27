@@ -73,7 +73,7 @@ new class extends Component
                 <label for="name" class="form-label">Full Name</label>
                 <div class="input-group">
                     <input type="text" wire:model="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Full Name" required autofocus autocomplete="name">
-                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
+                    <div class="input-group-text"> <span class="bi bi-person"></span> </div>
                 </div>
                 @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -83,7 +83,7 @@ new class extends Component
                 <label for="email" class="form-label">Email address</label>
                 <div class="input-group">
                     <input type="email" wire:model="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" required autocomplete="username">
-                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
+                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
                 </div>
                 @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
