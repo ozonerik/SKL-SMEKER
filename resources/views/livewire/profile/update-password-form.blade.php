@@ -76,25 +76,6 @@ new class extends Component
                 @enderror
             </div>
             <div class="row">
-                @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
-                    <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
-                        <p class="mt-2">
-                            {{ __('Your email address is unverified.') }}
-                            <button wire:click.prevent="sendVerification" class="btn btn-success">
-                                {{ __('Click here to re-send the verification email.') }}
-                            </button>
-                        </p>
-
-                        @if (session('status') === 'verification-link-sent')
-                            <p class="mt-2">
-                                {{ __('A new verification link has been sent to your email address.') }}
-                            </p>
-                        @endif
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-            </div>
-            <div class="row">
                 <div class="col-12">
                     <div class="float-end"> <button type="submit" class="btn btn-primary">{{ __('Save') }}</button> </div>
                 </div> <!-- /.col -->
