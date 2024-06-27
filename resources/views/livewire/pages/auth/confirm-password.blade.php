@@ -5,7 +5,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component
+new #[Layout('layouts.app')] class extends Component
 {
     public string $password = '';
 
@@ -33,26 +33,42 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 
-<div class="login-box">
-    <div class="login-logo"> <a href="{{ url('/') }}" wire:navigate><b>Admin</b>LTE</a> </div> <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <div class="mb-4 text-justify">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+<x-slot name="header">
+        {{ __('Verification Email') }}
+</x-slot>
+<div>
+    @if (session('status') == 'verification-link-sent')
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="callout callout-info">
+                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
             </div>
-            <form wire:submit="confirmPassword">
-                <div class="input-group mb-3"> <input type="password" wire:model="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required autocomplete="current-password">
-                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
-                    @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-grid gap-2"> <button type="submit" class="btn btn-primary">{{ __('Confirm') }}</button> </div>
-                    </div> <!-- /.col -->
-                </div> <!--end::Row-->
-            </form>
-        </div> <!-- /.login-card-body -->
+        </div> 
     </div>
-</div> <!-- /.login-box --> <!--begin::Third Party Plugin(OverlayScrollbars)-->
+    @endif
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Confirm your password</h3>
+                    <div class="card-tools"> <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> <i data-lte-icon="expand" class="bi bi-plus-lg"></i> <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> </button> <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove"> <i class="bi bi-x-lg"></i> </button> </div>
+                </div>
+                <form wire:submit="confirmPassword">
+                    <div class="card-body">
+                        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+                        <div class="input-group"> 
+                            <input type="password" wire:model="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required autocomplete="current-password">
+                            <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
+                            @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div> <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit"class="btn btn-success">{{ __('Confirm') }}</button> 
+                    </div> <!-- /.card-footer-->
+                </form>
+            </div> <!-- /.card -->
+        </div>
+    </div>
+</div>

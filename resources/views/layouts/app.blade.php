@@ -31,9 +31,7 @@
                 @endif
                 <div class="app-content"> <!--begin::Container-->
                     <div class="container-fluid"> <!--begin::Row-->
-                        <div class="row">
-                            {{ $slot }}
-                        </div> <!--end::Row-->
+                        {{ $slot }}
                     </div>
                 </div> <!--end::App Content-->
             </main> <!--end::App Main--> <!--begin::Footer-->

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component
+new #[Layout('layouts.app')] class extends Component
 {
     /**
      * Send an email verification notification to the user.
@@ -35,27 +35,33 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 
-<div class="login-box">
-    <div class="login-logo"> <a href="{{ url('/') }}" wire:navigate><b>Admin</b>LTE</a> </div> <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <div class="mb-4 text-justify">
-                {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+<x-slot name="header">
+        {{ __('Verification Email') }}
+</x-slot>
+<div>
+    @if (session('status') == 'verification-link-sent')
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="callout callout-info">
+                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
             </div>
-            @if (session('status') == 'verification-link-sent')
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-            <div class="row">
-                <div class="col-8">
-                    <div class="d-grid gap-2"> <button type="button" wire:click="sendVerification" class="btn btn-success">{{ __('Resend Verification Email') }}</button> </div>
-                </div> <!-- /.col -->
-                <div class="col-4">
-                    <div class="d-grid gap-2"> <button wire:click="logout" type="submit" class="btn btn-primary">{{ __('Log Out') }}</button> </div>
-                </div> <!-- /.col -->
-            </div> <!--end::Row-->
-        </div> <!-- /.login-card-body -->
+        </div> 
     </div>
-</div> <!-- /.login-box --> <!--begin::Third Party Plugin(OverlayScrollbars)-->
+    @endif
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Verification Email</h3>
+                    <div class="card-tools"> <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> <i data-lte-icon="expand" class="bi bi-plus-lg"></i> <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> </button> <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove"> <i class="bi bi-x-lg"></i> </button> </div>
+                </div>
+                <div class="card-body">
+                {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+                </div> <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="button" wire:click="sendVerification" class="btn btn-success">{{ __('Resend Verification Email') }}</button> 
+                </div> <!-- /.card-footer-->
+            </div> <!-- /.card -->
+        </div>
+    </div>
+</div>
