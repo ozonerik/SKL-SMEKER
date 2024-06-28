@@ -45,17 +45,22 @@ new class extends Component
     </div>
     <form wire:submit="updatePassword">
         <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-12">
+                {{ __('Ensure your account is using a long, random password to stay secure.') }}
+                </div>
+            </div>
             <x-forms.input name="current_password" type="password" icon="bi bi-lock-fill" label="Current Password"  placeholder="Current Password" required autocomplete="current-password" />
             <x-forms.input name="password" type="password" icon="bi bi-lock-fill" label="New Password"  placeholder="New Password" required autocomplete="new-password" />
             <x-forms.input name="password_confirmation" type="password" icon="bi bi-lock-fill" label="Confirm Password"  placeholder="Confirm Password" required autocomplete="new-password" />
             <div class="row">
                 <div class="col-12">
-                    <div class="float-end"> <button type="submit" class="btn btn-primary">{{ __('Save') }}</button> </div>
+                    <div class="float-end">  </div>
                 </div> <!-- /.col -->
             </div> <!--end::Row-->
         </div> <!-- /.card-body -->
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+        </div> <!-- /.card-footer-->
     </form>
-    <div class="card-footer">
-        {{ __('Ensure your account is using a long, random password to stay secure.') }}
-    </div> <!-- /.card-footer-->
 </div> <!-- /.card -->

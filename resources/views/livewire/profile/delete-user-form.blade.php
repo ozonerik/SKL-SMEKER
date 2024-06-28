@@ -29,16 +29,14 @@ new class extends Component
         <div class="card-tools"> <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> <i data-lte-icon="expand" class="bi bi-plus-lg"></i> <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> </button> <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove"> <i class="bi bi-x-lg"></i> </button> </div>
     </div>
     <div class="card-body">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-12">
-                <div class="float-end"> 
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteAccountModal">{{ __('Delete Account') }}</button>
-                </div>
-            </div> <!-- /.col -->
-        </div> <!-- /.row -->
+            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+            </div>
+        </div>
     </div> <!-- /.card-body -->
     <div class="card-footer">
-    {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteAccountModal">{{ __('Delete Account') }}</button>
     </div> <!-- /.card-footer-->
 
     <!-- Modal -->

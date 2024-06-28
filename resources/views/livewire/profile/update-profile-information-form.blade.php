@@ -69,6 +69,11 @@ new class extends Component
     </div>
     <form wire:submit="updateProfileInformation">
         <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-12">
+                {{ __("Update your account's profile information and email address.") }}
+                </div>
+            </div>
             <x-forms.input name="name" icon="bi bi-person" label="Full Name"  placeholder="Full Name" required autofocus autocomplete="name" />
             <x-forms.input name="email" type="email" icon="bi bi-envelope" label="Email address"  placeholder="Email" required autocomplete="username" />
             @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
@@ -90,14 +95,9 @@ new class extends Component
                 </div>
             </div>
             @endif
-            <div class="row">
-                <div class="col-12">
-                    <div class="float-end"> <button type="submit" class="btn btn-primary">{{ __('Save') }}</button> </div>
-                </div> <!-- /.col -->
-            </div> <!--end::Row-->
         </div> <!-- /.card-body -->
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+        </div> <!-- /.card-footer-->
     </form>
-    <div class="card-footer">
-        {{ __("Update your account's profile information and email address.") }}
-    </div> <!-- /.card-footer-->
 </div> <!-- /.card -->
