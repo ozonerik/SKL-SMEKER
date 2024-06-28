@@ -7,7 +7,7 @@
         <x-icondarkmode />
         <x-buttondarkmode />
         <div class="app-wrapper"> <!--begin::Header-->
-            <livewire:layout.navigation />
+            <livewire:layout.navigationlock />
             <livewire:layout.sidebarlock />
             <main class="app-main"> <!--begin::App Content Header-->
                 @if (isset($header))

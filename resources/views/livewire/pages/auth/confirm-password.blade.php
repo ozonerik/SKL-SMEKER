@@ -34,14 +34,14 @@ new #[Layout('layouts.applock')] class extends Component
 }; ?>
 
 <x-slot name="header">
-        {{ __('Confirm your password') }}
+        {{ __('Restricted Access') }}
 </x-slot>
 <div>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Confirm your password</h3>
+                    <h3 class="card-title">Restricted Access</h3>
                     <div class="card-tools"> 
                         <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> 
                             <i data-lte-icon="expand" class="bi bi-plus-lg"></i> 
