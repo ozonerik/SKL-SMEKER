@@ -5,13 +5,20 @@
     'icon',
     'icontext',
     'iconposition' => 'right',
+    'collabel' => false,
 ])
 @php
 $icon=(isset($icon)) ? $icon : null;
 $icontext=(isset($icontext)) ? $icontext : null;
+$isinvalid=($errors->has($name)) ? 'is-invalid' : '';
 @endphp
-<div class="mb-2 mt-1">
-    <label for="{{ $name }}" class="form-label">{{ $label }}</label>
+<div class="mb-2 mt-1 {{ ($collabel)?'row':'' }}">
+    @if(isset($label))
+    <label for="{{ $name }}" class="{{ ($collabel)?'col-sm-2 col-form-label':'form-label' }}">{{ $label }}</label>
+    @endif
+    @if($collabel)
+    <div class="col-sm-10">
+    @endif
     <div class="input-group @error($name) has-validation @enderror"> 
         @if (isset($icon) && $iconposition == 'left')
         <span class="input-group-text">
@@ -25,7 +32,8 @@ $icontext=(isset($icontext)) ? $icontext : null;
         @endif
         <input
         wire:model="{{ $name }}" 
-        name="{{ $name }}"  
+        name="{{ $name }}"
+        
         class="form-control @error($name) is-invalid @enderror" 
         id="{{ $name }}" 
         {{ $attributes->merge([
@@ -34,7 +42,12 @@ $icontext=(isset($icontext)) ? $icontext : null;
             'required' => '',
             'autofocus' => '',
             'autocomplete' => 'off',
-            ]) }}
+            ]) 
+        }}
+        {{ $attributes->merge([
+            'class' => 'form-control '.$isinvalid
+            ])
+        }}
         >
         @if (isset($icon) && $iconposition == 'right')
         <span class="input-group-text">
@@ -52,4 +65,7 @@ $icontext=(isset($icontext)) ? $icontext : null;
         </div>
         @enderror
     </div>
+    @if($collabel)
+    </div>
+    @endif
 </div>
