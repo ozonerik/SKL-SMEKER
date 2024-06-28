@@ -79,24 +79,9 @@ new #[Layout('layouts.guest')] class extends Component
                 </div>
                 <!-- Session Status -->
                 <x-auth-session-status :status="session('status')" />
-                <div class="input-group mb-3"> <input type="email" wire:model="email" id="email" class="form-control @error('form.email') is-invalid @enderror" placeholder="Email" name="email" required autofocus autocomplete="username">
-                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
-                    @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="input-group mb-3"> <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" wire:model="password" id="password" name="password" required autocomplete="new-password">
-                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
-                    @error('password')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="input-group mb-3"> <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Confirm Password" wire:model="password_confirmation" id="password_confirmation" name="password_confirmation" required autocomplete="new-password">
-                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
-                    @error('password_confirmation')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div> <!--begin::Row-->
+                <x-forms.input name="email" icon="bi bi-envelope" placeholder="Email" required autofocus autocomplete="username" />
+                <x-forms.input name="password" type="password" icon="bi bi-lock-fill" placeholder="Password" required autocomplete="new-password" />
+                <x-forms.input name="password_confirmation" type="password" icon="bi bi-lock-fill" placeholder="Confirm Password" required autocomplete="new-password" />
                 <div class="row">
                     <div class="col-12">
                         <div class="d-grid gap-2"> 

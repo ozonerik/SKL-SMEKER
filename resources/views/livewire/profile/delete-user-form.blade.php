@@ -51,21 +51,13 @@ new class extends Component
         </div>
         <form wire:submit="deleteUser">
             <div class="modal-body">
-                <h2>
-                    {{ __('Are you sure you want to delete your account?') }}
-                </h2>
-
+                <h3 class="text-center">
+                    {{ __('Are you sure you want to delete your account ?') }}
+                </h3>
                 <p class="mt-1">
                     {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
                 </p>
-
-                <div class="input-group mt-6">
-                    <input type="password" wire:model="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" autofocus>
-                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
-                    @error('password')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+                <x-forms.input name="password" type="password" icon="bi bi-lock-fill" placeholder="Password" autofocus />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
