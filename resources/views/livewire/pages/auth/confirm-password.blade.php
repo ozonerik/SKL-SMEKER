@@ -5,7 +5,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.app')] class extends Component
+new #[Layout('layouts.applock')] class extends Component
 {
     public string $password = '';
 
@@ -34,18 +34,9 @@ new #[Layout('layouts.app')] class extends Component
 }; ?>
 
 <x-slot name="header">
-        {{ __('Verification Email') }}
+        {{ __('Confirm your password') }}
 </x-slot>
 <div>
-    @if (session('status') == 'verification-link-sent')
-    <div class="row mb-3">
-        <div class="col-12">
-            <div class="callout callout-info">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-            </div>
-        </div> 
-    </div>
-    @endif
     <div class="row">
         <div class="col-12">
             <div class="card">

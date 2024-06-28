@@ -3,16 +3,6 @@
     <div class="sidebar-wrapper">
         <nav class="mt-2"> <!--begin::Sidebar Menu-->
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
-                
-                @if(Auth::user()->email_verified_at == null)
-                <li class="nav-item"> 
-                    <a href="{{ route('verification.notice') }}" class="nav-link {{ request()->routeIs('verification.notice')?'active':'' }}" wire:navigate> 
-                        <i class="nav-icon bi bi-envelope-check-fill"></i>
-                        <p> Verification Email </p>
-                    </a>
-                </li>
-                @endif
-                @if(Auth::user()->email_verified_at != null)
                 <li class="nav-item"> 
                     <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard')?'active':'' }}" wire:navigate> 
                         <i class="nav-icon bi bi-speedometer"></i>
@@ -54,7 +44,6 @@
                         @endrole
                     </ul>
                 </li>
-                @endif
                 <li class="nav-item"> 
                     <a href="{{ route('profile') }}" class="nav-link {{ request()->routeIs('profile')?'active':'' }}" wire:navigate> 
                         <i class="nav-icon bi bi-person-circle"></i>
