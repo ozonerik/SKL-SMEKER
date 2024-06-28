@@ -45,36 +45,9 @@ new class extends Component
     </div>
     <form wire:submit="updatePassword">
         <div class="card-body">
-            <div class="mb-3"> 
-                <label for="update_password_current_password" class="form-label">Current Password</label>
-                <div class="input-group has-validation">
-                    <input type="password" wire:model="current_password" id="update_password_current_password" class="form-control @error('current_password') is-invalid @enderror" placeholder="Current Password" autocomplete="current-password">
-                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
-                    @error('current_password')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="mb-3"> 
-                <label for="update_password_password" class="form-label">New Password</label>
-                <div class="input-group has-validation">
-                    <input type="password" wire:model="password" id="update_password_password" class="form-control @error('password') is-invalid @enderror" placeholder="New Password" autocomplete="new-password">
-                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
-                    @error('password')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="mb-3"> 
-                <label for="update_password_password_confirmation" class="form-label">Confirm Password</label>
-                <div class="input-group has-validation">
-                    <input type="password" wire:model="password_confirmation" id="update_password_password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Confirm Password" autocomplete="new-password">
-                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
-                    @error('password_confirmation')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
+            <x-forms.input name="current_password" type="password" icon="bi bi-lock-fill" label="Current Password"  placeholder="Current Password" required autocomplete="current-password" />
+            <x-forms.input name="password" type="password" icon="bi bi-lock-fill" label="New Password"  placeholder="New Password" required autocomplete="new-password" />
+            <x-forms.input name="password_confirmation" type="password" icon="bi bi-lock-fill" label="Confirm Password"  placeholder="Confirm Password" required autocomplete="new-password" />
             <div class="row">
                 <div class="col-12">
                     <div class="float-end"> <button type="submit" class="btn btn-primary">{{ __('Save') }}</button> </div>

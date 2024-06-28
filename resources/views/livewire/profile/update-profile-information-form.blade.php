@@ -69,26 +69,8 @@ new class extends Component
     </div>
     <form wire:submit="updateProfileInformation">
         <div class="card-body">
-            <div class="mb-3">
-                <label for="name" class="form-label">Full Name</label>
-                <div class="input-group">
-                    <input type="text" wire:model="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Full Name" required autofocus autocomplete="name">
-                    <div class="input-group-text"> <span class="bi bi-person"></span> </div>
-                </div>
-                @error('name')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="input-group mb-3"> 
-                <label for="email" class="form-label">Email address</label>
-                <div class="input-group">
-                    <input type="email" wire:model="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" required autocomplete="username">
-                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
-                </div>
-                @error('email')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div> <!--begin::Row-->
+            <x-forms.input name="name" icon="bi bi-person" label="Full Name"  placeholder="Full Name" required autofocus autocomplete="name" />
+            <x-forms.input name="email" type="email" icon="bi bi-envelope" label="Email address"  placeholder="Email" required autocomplete="username" />
             @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
             <div class="row mb-3">
                 <div class="col-12">

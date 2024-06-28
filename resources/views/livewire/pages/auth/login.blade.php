@@ -30,18 +30,8 @@ new #[Layout('layouts.guest')] class extends Component
             <div class="card-body login-card-body">
                 <x-auth-session-status :status="session('status')" />
                 <p class="login-box-msg">Sign in to start your session</p>
-                <div class="input-group mb-3"> <input type="email" wire:model="form.email" id="email" class="form-control @error('form.email') is-invalid @enderror" placeholder="Email" name="email" required autofocus autocomplete="username">
-                    <div class="input-group-text"> <span class="bi bi-envelope"></span> </div>
-                    @error('form.email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="input-group mb-3"> <input type="password" wire:model="form.password" id="password" class="form-control @error('form.password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
-                    <div class="input-group-text"> <span class="bi bi-lock-fill"></span> </div>
-                    @error('form.password')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div> <!--begin::Row-->
+                <x-forms.input name="form.email" type="email" icon="bi bi-envelope" placeholder="Email" required autofocus autocomplete="username" />
+                <x-forms.input name="form.password" type="password" icon="bi bi-lock-fill" placeholder="Password" required autocomplete="current-password" />
                 <div class="row">
                     <div class="col-8">
                         <div class="form-check"> <input class="form-check-input" wire:model="form.remember" id="remember" type="checkbox" name="remember"> <label class="form-check-label" for="remember">

@@ -1,8 +1,8 @@
 <?php
 
 if (!function_exists('testhelper')) {
-    function testhelper(){
-        $value="ini testhelper";
+    function linksidebar(){
+        $value=['dashboard','profile','adminpage','optpage','userpage'];
         return $value;
     }
 }
