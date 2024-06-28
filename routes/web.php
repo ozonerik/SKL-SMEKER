@@ -37,7 +37,7 @@ Route::view('profilelock', 'profilelock')
     ->middleware(['auth'])
     ->name('profilelock');
 
-Route::get('/admin', Adminpage::class)->middleware(['auth', 'verified','role:admin'])->name('adminpage');  
+Route::get('/admin', Adminpage::class)->middleware(['auth', 'verified','role:admin','password.confirm'])->name('adminpage');  
 Route::get('/opt', Optpage::class)->middleware(['auth', 'verified','role:admin|operator'])->name('optpage');  
 Route::get('/user', Userpage::class)->middleware(['auth', 'verified','role:admin|operator|user'])->name('userpage');  
 
