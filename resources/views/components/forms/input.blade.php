@@ -3,12 +3,14 @@
     'name',
     'label',
     'icon',
+    'type',
     'icontext',
     'iconposition' => 'right',
     'collabel' => false,
 ])
 @php
 $icon=(isset($icon)) ? $icon : null;
+$type=(isset($type)) ? $type : 'text';
 $icontext=(isset($icontext)) ? $icontext : null;
 $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
 @endphp
@@ -20,7 +22,7 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
     <div class="col-sm-10">
     @endif
     <div class="input-group @error($name) has-validation @enderror"> 
-        @if (isset($icon) && $iconposition == 'left')
+        @if (isset($icon) && $iconposition == 'left' && $type != 'file')
         <span class="input-group-text">
             @if ((isset($icon)||isset($icontext)) && !isset($icontext))
                 <span class="{{ $icon }}"></span>
@@ -37,7 +39,7 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
         class="form-control @error($name) is-invalid @enderror" 
         id="{{ $name }}" 
         {{ $attributes->merge([
-            'type' => 'text',
+            'type' => $type,
             'placeholder' => '',
             'required' => '',
             'autofocus' => '',
@@ -55,7 +57,11 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
                 <span class="{{ $icon }}"></span>
             @endif
             @if (isset($icontext) && !isset($icon))
-                {{ $icontext }}
+                @if ($type != 'file')
+                    {{ $icontext }}
+                @else
+                    Upload
+                @endif
             @endif
         </span>
         @endif
