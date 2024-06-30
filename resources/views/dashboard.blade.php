@@ -38,7 +38,7 @@
                         ['label'=>'tiga','nilai'=>'3'],
                     ]);
                     @endphp
-                    <x-forms.select label="Ini Select" id="iniselect" name="iniselect" :data="$data"  value="nilai" txtvalue="label" placeholder="Ini Select" />
+                    <x-forms.select label="Ini Select" id="iniselect" multiple  name="iniselect" :data="$data"  value="nilai" txtvalue="label" placeholder="Ini Select" />
                 </div> <!-- /.card-body -->
                 <div class="card-footer">Footer</div> <!-- /.card-footer-->
             </div> <!-- /.card -->
