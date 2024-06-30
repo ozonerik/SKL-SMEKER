@@ -2,14 +2,18 @@
 @props([
     'name',
     'label',
+    'value',
     'icon',
     'type',
+    'id',
     'icontext',
     'iconposition' => 'right',
     'collabel' => false,
 ])
 @php
+$value=(isset($value)) ? $value : '';
 $icon=(isset($icon)) ? $icon : null;
+$id=(isset($id)) ? $id : $name;
 $type=(isset($type)) ? $type : 'text';
 $icontext=(isset($icontext)) ? $icontext : null;
 $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
@@ -35,9 +39,7 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
         <input
         wire:model="{{ $name }}" 
         name="{{ $name }}"
-        
-        class="form-control @error($name) is-invalid @enderror" 
-        id="{{ $name }}" 
+        id="{{ $id }}" 
         {{ $attributes->merge([
             'type' => $type,
             'placeholder' => '',
