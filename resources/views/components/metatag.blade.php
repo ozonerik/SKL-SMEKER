@@ -16,4 +16,5 @@
 <!-- Scripts -->
 <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}"><!--end::Required Plugin(AdminLTE)-->
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+@stack('css')
 @vite(['resources/js/app.js'])

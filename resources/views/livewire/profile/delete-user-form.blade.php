@@ -55,7 +55,7 @@ new class extends Component
                 <p class="mt-1">
                     {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
                 </p>
-                <x-forms.input name="password" type="password" icon="bi bi-lock-fill" placeholder="Password" autofocus />
+                <x-forms.input name="password" id="delete-password" type="password" icon="bi bi-lock-fill" placeholder="Password" autofocus />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
