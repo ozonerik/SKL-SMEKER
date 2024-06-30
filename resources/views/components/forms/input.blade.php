@@ -43,8 +43,6 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
         {{ $attributes->merge([
             'type' => $type,
             'placeholder' => '',
-            'required' => '',
-            'autofocus' => '',
             'autocomplete' => 'off',
             ]) 
         }}

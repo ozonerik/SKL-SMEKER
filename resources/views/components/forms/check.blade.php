@@ -6,7 +6,7 @@
     'value',
     'id',
     'type',
-    'radiogroup' => false,
+    'group' => false,
     'data',
     'collabel' => false,
 ])
@@ -18,7 +18,7 @@ $title=(isset($title)) ? $title : '';
 $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
 @endphp
 
-<div class="{{ ($collabel)?'row':'' }} {{ ($radiogroup)?'':'mb-3 mt-1' }}">
+<div class="{{ ($collabel)?'row':'' }} {{ ($group)?'':'mb-3 mt-1' }}">
     @if($collabel)
     <div class="col-sm-2">
         {{ $title }}
@@ -29,10 +29,11 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
     @endif
         <div class="form-check @error($name) has-validation @enderror"> 
             <input  
+            wire:model="{{ $name }}"
             name="{{ $name }}" 
             id="{{ $id }}" 
             value="{{ $value }}"
-            {{ $attributes->merge(['type' => $type,'required' => '',]) }}
+            {{ $attributes->merge(['type' => $type]) }}
             {{ $attributes->merge([ 'class' => 'form-check-input '.$isinvalid ]) }}
             > 
             <label class="form-check-label" for="{{ $id }}">

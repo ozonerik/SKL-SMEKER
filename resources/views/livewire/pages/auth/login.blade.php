@@ -32,11 +32,10 @@ new #[Layout('layouts.guest')] class extends Component
                 <p class="login-box-msg">Sign in to start your session</p>
                 <x-forms.input name="form.email" type="email" icon="bi bi-envelope" placeholder="Email" required autofocus autocomplete="username" />
                 <x-forms.input name="form.password" type="password" icon="bi bi-lock-fill" placeholder="Password" required autocomplete="current-password" />
+                
                 <div class="row">
                     <div class="col-8">
-                        <div class="form-check"> <input class="form-check-input" wire:model="form.remember" id="remember" type="checkbox" name="remember"> <label class="form-check-label" for="remember">
-                                Remember Me
-                            </label> </div>
+                    <x-forms.check name="form.remember" label="Remember Me" group='true'/>
                     </div> <!-- /.col -->
                     <div class="col-4">
                         <div class="d-grid gap-2"> <button type="submit" class="btn btn-primary">Log in</button> </div>

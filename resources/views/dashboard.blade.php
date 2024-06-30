@@ -12,8 +12,10 @@
                 </div>
                 <div class="card-body">
                     <x-forms.input name="nama" type="text" icon="bi bi-person" label="Nama"  placeholder="Nama" />
-                    <x-forms.check name="check" type="radio" collabel='true' radiogroup='true' label="cek 1" value="cek1"  />
-                    <x-forms.check name="check" type="radio" collabel='true' radiogroup='true' label="cek 2" value="cek2"  />
+                    <x-forms.check name="check" type="radio" id="1" collabel='true' group='true' label="cek 1" value="cek1"  />
+                    <x-forms.check name="check" type="radio" id="2" collabel='true' group='true' label="cek 2" value="cek2"  />
+                    <x-forms.check name="check" label="cek 1" id="3" group='true' value="cek1"  />
+                    <x-forms.check name="check" label="cek 1" id="4" group='true' value="cek1"  />
                 </div> <!-- /.card-body -->
                 <div class="card-footer">Footer</div> <!-- /.card-footer-->
             </div> <!-- /.card -->
