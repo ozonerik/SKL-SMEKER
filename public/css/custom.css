@@ -120,3 +120,4 @@ background-color: var(--bs-body-bg);
 html[data-bs-theme="dark"] .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option[role=group] .select2-results__group {
 color: var(--bs-secondary-color)!important;
 }
+/* End Select 2 bootstrap-5 theme override */

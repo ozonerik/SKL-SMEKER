@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Home;
+use App\Livewire\Backend\Dashboardpage;
 use App\Livewire\Backend\Adminpage;
 use App\Livewire\Backend\Optpage;
 use App\Livewire\Backend\Userpage;
@@ -25,9 +26,13 @@ Route::get('/create-symlink', function () {
     return "Symlink created successfully.";
 });
 
-Route::view('dashboard', 'dashboard')
+Route::get('/dashboard', Dashboardpage::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+/* Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard'); */
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
