@@ -24,11 +24,11 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 <div class="login-box">
-    <x-loginlogo />
+    <x-ui.loginlogo />
     <div class="card">
         <form wire:submit="login">
             <div class="card-body login-card-body">
-                <x-auth-session-status :status="session('status')" />
+                <x-ui.auth-session-status :status="session('status')" />
                 <p class="login-box-msg">Sign in to start your session</p>
                 <x-forms.input name="form.email" type="email" icon="bi bi-envelope" placeholder="Email" required autofocus autocomplete="username" />
                 <x-forms.input name="form.password" type="password" icon="bi bi-lock-fill" placeholder="Password" required autocomplete="current-password" />

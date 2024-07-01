@@ -37,7 +37,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div class="register-box">
-    <x-loginlogo />
+    <x-ui.loginlogo />
     <div class="card">
         <form wire:submit="register">
             <div class="card-body register-card-body">

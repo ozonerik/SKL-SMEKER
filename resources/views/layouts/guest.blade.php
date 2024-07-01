@@ -4,8 +4,8 @@
         <x-metatag />
     </head>
     <body class="{{ Route::currentRouteName() == 'login' ? 'login-page' : (Route::currentRouteName() == 'register' ? 'register-page' : 'login-page') }} bg-body-secondary">
-        <x-icondarkmode />
-        <x-buttondarkmode />
+        <x-ui.icondarkmode />
+        <x-ui.buttondarkmode />
         {{ $slot }}
         <x-script />
     </body><!--end::Body--> 

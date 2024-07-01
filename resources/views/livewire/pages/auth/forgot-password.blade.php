@@ -37,7 +37,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div class="login-box">
-    <x-loginlogo />
+    <x-ui.loginlogo />
     <div class="card">
         <form wire:submit="sendPasswordResetLink">
             <div class="card-body login-card-body">
@@ -45,7 +45,7 @@ new #[Layout('layouts.guest')] class extends Component
                         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                 </div>
                 <!-- Session Status -->
-                <x-auth-session-status :status="session('status')" />
+                <x-ui.auth-session-status :status="session('status')" />
                 <x-forms.input name="email" icon="bi bi-envelope" placeholder="Email" required autofocus />
                 <div class="row">
                     <div class="col-12">
