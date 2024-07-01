@@ -20,7 +20,7 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
 @endphp
 <div class="mb-3 mt-1 {{ ($collabel)?'row':'' }}">
     @if(isset($label))
-    <label for="{{ $name }}" class="{{ ($collabel)?'col-sm-2 col-form-label':'form-label' }}">{{ $label }}</label>
+    <label for="{{ $id }}" class="{{ ($collabel)?'col-sm-2 col-form-label':'form-label' }}">{{ $label }}</label>
     @endif
     @if($collabel)
     <div class="col-sm-10">

@@ -15,9 +15,9 @@ $id=(isset($id)) ? $id : $name;
 $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
 $placeholder=(isset($placeholder)) ? $placeholder : 'Pilih';
 @endphp
-@push('js')
+@script
 @if($select2)
-    <script>
+    <script data-navigate-once>
     document.addEventListener("livewire:navigated", () => {
         $('#{{$id}}').select2({
             theme: 'bootstrap-5',
@@ -27,7 +27,20 @@ $placeholder=(isset($placeholder)) ? $placeholder : 'Pilih';
     });
     </script>
 @endif
-@endpush
+@endscript
+@script
+@if($select2)
+    <script data-navigate-once>
+    document.addEventListener("livewire:navigated", () => {
+        $('#{{$id}}').on('select2:select', function (e) {
+            var data = e.params.data;
+            console.log(data.id);
+            //@this.set('{{ $name }}', $(this).val());
+        });
+    },{once:true});
+    </script>
+@endif
+@endscript
 <div class="mb-3 mt-1 {{ ($collabel)?'row':'' }}">
     @if(isset($label))
     <label for="{{ $name }}" class="{{ ($collabel)?'col-sm-2 col-form-label':'form-label' }}">{{ $label }}</label>
@@ -40,10 +53,6 @@ $placeholder=(isset($placeholder)) ? $placeholder : 'Pilih';
         wire:model="{{ $name }}" 
         name="{{ $name }}"
         id="{{ $id }}"
-         
-        @if($select2)
-        onchange="@this.set('{{ $name }}', $(this).select2('val'))"
-        @endif
 
         {{ $attributes->merge([
             'placeholder' => $placeholder,
