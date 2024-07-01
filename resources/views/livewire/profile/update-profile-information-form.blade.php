@@ -71,22 +71,18 @@ new class extends Component
     <x-forms.input name="name" icon="bi bi-person" label="Full Name"  placeholder="Full Name" required autofocus autocomplete="name" />
     <x-forms.input name="email" type="email" icon="bi bi-envelope" label="Email address"  placeholder="Email" required autocomplete="username" />
     @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
-    <div class="row mb-3">
-        <div class="col-12">
-            <div class="callout callout-info">
-                <p>
-                    {{ __('Your email address is unverified.') }}
-                    <button wire:click.prevent="sendVerification" class="btn btn-link link-offset-1">
-                    {{ __('Click here to re-send the verification email.') }}
-                    </button>
-                </p>
-                @if (session('status') === 'verification-link-sent')
-                    <p class="mt-2">
-                        {{ __('A new verification link has been sent to your email address.') }}
-                    </p>
-                @endif
-            </div>
-        </div>
-    </div>
+    <x-ui.callout type="info">
+        <p>
+            {{ __('Your email address is unverified.') }}
+            <button wire:click.prevent="sendVerification" class="btn btn-link link-offset-1">
+            {{ __('Click here to re-send the verification email.') }}
+            </button>
+        </p>
+        @if (session('status') === 'verification-link-sent')
+            <p class="mt-2">
+                {{ __('A new verification link has been sent to your email address.') }}
+            </p>
+        @endif
+    </x-ui.callout>
     @endif
 </x-ui.card>

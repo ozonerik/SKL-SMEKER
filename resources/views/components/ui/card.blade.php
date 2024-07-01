@@ -1,6 +1,7 @@
 @props([
     'title',
     'submit',
+    'button',
     'btncolor',
     'cancel',
     'textsubmit',
@@ -41,7 +42,18 @@ $textbutton=(isset($textbutton)) ? $textbutton : 'Submit';
                 {{ $textbutton }}
             </button>
             @if(isset($cancel))
-                    <button type="button" wire:click="{{ $cancel }}" class="btn float-end">{{ $textcancel }}</button>
+                <button type="button" wire:click="{{ $cancel }}" class="btn float-end">{{ $textcancel }}</button>
+            @endif
+        </div>
+    @endif
+
+    @if(isset($button))
+        <div class="card-footer">
+            <button type="button" wire:click="{{ $button }}" class="btn btn-{{ $btncolor }}" >
+                {{ $textbutton }}
+            </button>
+            @if(isset($cancel))
+                <button type="button" wire:click="{{ $cancel }}" class="btn float-end">{{ $textcancel }}</button>
             @endif
         </div>
     @endif

@@ -4,16 +4,9 @@
 <div>
     <div class="row">
         <div class="col-12"> <!-- Default box -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">General User Page</h3>
-                    <div class="card-tools"> <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> <i data-lte-icon="expand" class="bi bi-plus-lg"></i> <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> </button> <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove"> <i class="bi bi-x-lg"></i> </button> </div>
-                </div>
-                <div class="card-body">
-                    {{ __("General User Page") }}
-                </div> <!-- /.card-body -->
-                <div class="card-footer">Footer</div> <!-- /.card-footer-->
-            </div> <!-- /.card -->
+            <x-ui.card title="General User Page" class="card-primary card-outline">
+                <h5>Ini General User Page</h5>
+            </x-ui.card>
         </div>
     </div>
 </div>
