@@ -19,11 +19,11 @@ $placeholder=(isset($placeholder)) ? $placeholder : 'Pilih';
 @if($select2)
     <script>
     document.addEventListener("livewire:navigated", () => {
-        $('#iniselect').select2({
+        $('#{{$id}}').select2({
             theme: 'bootstrap-5',
             placeholder: '{{ $placeholder }}',
             allowClear: true
-        }); 
+        });
     });
     </script>
 @endif
@@ -39,7 +39,12 @@ $placeholder=(isset($placeholder)) ? $placeholder : 'Pilih';
         <select
         wire:model="{{ $name }}" 
         name="{{ $name }}"
-        id="{{ $id }}" 
+        id="{{ $id }}"
+         
+        @if($select2)
+        onchange="@this.set('{{ $name }}', $(this).select2('val'))"
+        @endif
+
         {{ $attributes->merge([
             'placeholder' => $placeholder,
             ]) 

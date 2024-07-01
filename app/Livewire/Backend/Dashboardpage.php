@@ -8,6 +8,17 @@ use Spatie\Permission\Models\Role;
 
 class Dashboardpage extends Component
 {
+    public $initext;
+    public $iniradio;
+    public $inicheck;
+    public $iniselect;
+
+ 
+    public function save()
+    {
+        dd($this->only(['initext','iniradio','inicheck','iniselect']));
+    }
+    
     #[Layout('layouts.app')]
     public function render()
     {
