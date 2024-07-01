@@ -19,7 +19,7 @@ $textcancel=(isset($textcancel)) ? $textcancel : 'Cancel';
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="{{ $idlabel }}">{{ $title }}</h1>
+                <h5 class="modal-title fs-5" id="{{ $idlabel }}">{{ $title }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             @if(isset($submit))
@@ -30,12 +30,16 @@ $textcancel=(isset($textcancel)) ? $textcancel : 'Cancel';
                 </div>
             @if(isset($submit))
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-{{ $btncolor }}">{{ $textsubmit }}</button>
+                    <div class="col float-start">
+                        <button type="submit" class="btn btn-{{ $btncolor }} ">{{ $textsubmit }}</button>
+                    </div>
+                    <div clas="col float-end">
                     @if(isset($cancel))
                         <button type="button" wire:click="{{ $cancel }}" data-bs-dismiss="modal" class="btn float-end">{{ $textcancel }}</button>
                     @else
-                        <button type="button" data-bs-dismiss="modal" class="btn float-end">{{ $textcancel }}</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn">Cancel</button>
                     @endif
+                    </div>
                 </div>
             </form>
             @endif

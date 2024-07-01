@@ -5,12 +5,15 @@
     'cancel',
     'textsubmit',
     'textcancel',
+    'modaltarget',
+    'textbutton',
 ])
 @php
 $title=(isset($title)) ? $title : '';
 $btncolor=(isset($btncolor)) ? $btncolor : 'primary';
 $textsubmit=(isset($textsubmit)) ? $textsubmit : 'Submit';
 $textcancel=(isset($textcancel)) ? $textcancel : 'Cancel';
+$textbutton=(isset($textbutton)) ? $textbutton : 'Submit';
 @endphp
 <div {{ $attributes->merge(['class' => 'card mb-5 '])}} >
     <div class="card-header">
@@ -31,6 +34,18 @@ $textcancel=(isset($textcancel)) ? $textcancel : 'Cancel';
         <div class="card-body">
             {{ $slot }}
         </div>
+
+    @if(isset($modaltarget))
+        <div class="card-footer">
+            <button type="button" class="btn btn-{{ $btncolor }}" data-bs-toggle="modal" data-bs-target="#{{ $modaltarget }}">
+                {{ $textbutton }}
+            </button>
+            @if(isset($cancel))
+                    <button type="button" wire:click="{{ $cancel }}" class="btn float-end">{{ $textcancel }}</button>
+            @endif
+        </div>
+    @endif
+
     @if(isset($submit))
         <div class="card-footer">
                 <button type="submit" class="btn btn-{{ $btncolor }}">{{ $textsubmit }}</button>
