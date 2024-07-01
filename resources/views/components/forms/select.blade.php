@@ -25,17 +25,11 @@ $placeholder=(isset($placeholder)) ? $placeholder : 'Pilih';
             allowClear: true
         });
     });
-    </script>
-@endif
-@endscript
-@script
-@if($select2)
-    <script data-navigate-once>
     document.addEventListener("livewire:navigated", () => {
         $('#{{$id}}').on('select2:select', function (e) {
             var data = e.params.data;
-            console.log(data.id);
-            //@this.set('{{ $name }}', $(this).val());
+            //console.log(data.id);
+            @this.set('{{ $name }}', $(this).val());
         });
     },{once:true});
     </script>
@@ -48,7 +42,7 @@ $placeholder=(isset($placeholder)) ? $placeholder : 'Pilih';
     @if($collabel)
     <div class="col-sm-10">
     @endif
-    <div class="input-group @error($name) has-validation @enderror"> 
+    <div class="input-group @error($name) has-validation @enderror" wire:ignore> 
         <select
         wire:model="{{ $name }}" 
         name="{{ $name }}"
