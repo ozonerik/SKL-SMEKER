@@ -62,42 +62,31 @@ new class extends Component
     }
 }; ?>
 
-<div class="card mb-5">
-    <div class="card-header">
-        <h3 class="card-title">{{ __('Profile Information') }}</h3>
-        <div class="card-tools"> <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse"> <i data-lte-icon="expand" class="bi bi-plus-lg"></i> <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> </button> <button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove"> <i class="bi bi-x-lg"></i> </button> </div>
+<x-ui.card title="Profile Information"  submit="updateProfileInformation" textsubmit="Save" btncolor="primary" class="card-primary card-outline">
+    <div class="row mb-3">
+        <div class="col-12">
+        {{ __("Update your account's profile information and email address.") }}
+        </div>
     </div>
-    <form wire:submit="updateProfileInformation">
-        <div class="card-body">
-            <div class="row mb-3">
-                <div class="col-12">
-                {{ __("Update your account's profile information and email address.") }}
-                </div>
+    <x-forms.input name="name" icon="bi bi-person" label="Full Name"  placeholder="Full Name" required autofocus autocomplete="name" />
+    <x-forms.input name="email" type="email" icon="bi bi-envelope" label="Email address"  placeholder="Email" required autocomplete="username" />
+    @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="callout callout-info">
+                <p>
+                    {{ __('Your email address is unverified.') }}
+                    <button wire:click.prevent="sendVerification" class="btn btn-link link-offset-1">
+                    {{ __('Click here to re-send the verification email.') }}
+                    </button>
+                </p>
+                @if (session('status') === 'verification-link-sent')
+                    <p class="mt-2">
+                        {{ __('A new verification link has been sent to your email address.') }}
+                    </p>
+                @endif
             </div>
-            <x-forms.input name="name" icon="bi bi-person" label="Full Name"  placeholder="Full Name" required autofocus autocomplete="name" />
-            <x-forms.input name="email" type="email" icon="bi bi-envelope" label="Email address"  placeholder="Email" required autocomplete="username" />
-            @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
-            <div class="row mb-3">
-                <div class="col-12">
-                    <div class="callout callout-info">
-                        <p>
-                            {{ __('Your email address is unverified.') }}
-                            <button wire:click.prevent="sendVerification" class="btn btn-link link-offset-1">
-                            {{ __('Click here to re-send the verification email.') }}
-                            </button>
-                        </p>
-                        @if (session('status') === 'verification-link-sent')
-                            <p class="mt-2">
-                                {{ __('A new verification link has been sent to your email address.') }}
-                            </p>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            @endif
-        </div> <!-- /.card-body -->
-        <div class="card-footer">
-            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
-        </div> <!-- /.card-footer-->
-    </form>
-</div> <!-- /.card -->
+        </div>
+    </div>
+    @endif
+</x-ui.card>
