@@ -31,6 +31,9 @@ new #[Layout('layouts.applock')] class extends Component
 
         $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
     }
+    public function cancel():void{
+        $this->redirect('dashboard');
+    }
 }; ?>
 
 <x-slot name="header">
@@ -39,7 +42,7 @@ new #[Layout('layouts.applock')] class extends Component
 <div>
     <div class="row">
         <div class="col-12">
-            <x-ui.card title="Restricted Access" submit="confirmPassword" textsubmit="Confirm" btncolor="warning"  class="card-warning card-outline">
+            <x-ui.card title="Restricted Access" submit="confirmPassword" textsubmit="Confirm" btncolor="warning"  class="card-warning card-outline" cancel="cancel" textcancel="Back to dashboard">
                 {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
                 <x-forms.input name="password" id="password" type="password" icon="bi bi-lock-fill" label="Password"  placeholder="Password" required autocomplete="current-password" />
             </x-ui.card>
