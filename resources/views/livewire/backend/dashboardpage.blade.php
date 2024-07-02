@@ -11,6 +11,7 @@
         <div class="col-12"> <!-- Default box -->
         <x-ui.card title="Dashboard" class="card-primary card-outline" cancel="" submit="save">
             <x-forms.input name="initext" type="text" id="nama" icon="bi bi-person" label="Nama"  placeholder="Nama" />
+            <x-forms.input name="inifile" type="file" id="inifile" label="Upload"  placeholder="inifile" />
             <x-forms.check name="iniradio" type="radio" id="1" group='true' label="radio1" value="radio1"  />
             <x-forms.check name="iniradio" type="radio" id="2" group='true' label="radio2" value="radio2"  />
             <x-forms.check name="inicheck" label="cek 1" id="3" value="check1" />

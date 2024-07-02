@@ -4,8 +4,8 @@
         <x-metatag />
     </head>
     <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
-        <x-ui.icondarkmode />
-        <x-ui.buttondarkmode />
+        <x-icondarkmode />
+        <x-buttondarkmode />
         <div class="app-wrapper"> <!--begin::Header-->
             <livewire:layout.navigation />
             <livewire:layout.sidebar />

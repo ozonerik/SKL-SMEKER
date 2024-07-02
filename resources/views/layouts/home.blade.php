@@ -6,8 +6,8 @@
         <link href="{{ asset('assets/css/sticky-footer-navbar.css') }}" rel="stylesheet">
     </head>
     <body class="d-flex flex-column h-100">
-        <x-ui.icondarkmode />
-        <x-ui.buttondarkmode />
+        <x-icondarkmode />
+        <x-buttondarkmode />
         <header>
         @if (Route::has('login'))
             <livewire:home.navigation />
