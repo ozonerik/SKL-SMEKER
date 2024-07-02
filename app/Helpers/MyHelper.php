@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 if (!function_exists('StoreFile')) {
     function StoreFile($file,$dir,$qty=50){
         $path=$file->store($dir,'public');
-        $img=Image::read(Storage::disk('public')->path($path))->toJpeg($qty)->save(Storage::disk('public')->path($path));
+        $compress=Image::read(Storage::disk('public')->path($path))->toJpeg($qty)->save(Storage::disk('public')->path($path));
+        return $path;
     }
 }
