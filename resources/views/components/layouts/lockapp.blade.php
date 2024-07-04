@@ -4,11 +4,11 @@
         <x-metatag />
     </head>
     <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
-        <x-icondarkmode />
-        <x-buttondarkmode />
+        <x-ui.icondarkmode />
+        <x-ui.buttondarkmode />
         <div class="app-wrapper"> <!--begin::Header-->
-            <livewire:layout.navigationlock />
-            <livewire:layout.sidebarlock />
+            <livewire:menu.locknavigation />
+            <livewire:menu.locksidebar />
             <main class="app-main"> <!--begin::App Content Header-->
                 <x-ui.headernav :dataheader="$header" />
                 <div class="app-content"> <!--begin::Container-->

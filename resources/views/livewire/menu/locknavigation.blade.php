@@ -24,7 +24,7 @@ new class extends Component
         </ul> <!--end::Start Navbar Links--> <!--begin::End Navbar Links-->
         <ul class="navbar-nav ms-auto"> <!--begin::Navbar Search-->
             <x-ui.navbarfullscreen />
-            <x-ui.navbarusermenu profilelink="profilelock" />
+            <x-ui.navbarusermenu profilelink="lockprofile" />
         </ul> <!--end::End Navbar Links-->
     </div> <!--end::Container-->
 </nav> <!--end::Header--> <!--begin::Sidebar-->

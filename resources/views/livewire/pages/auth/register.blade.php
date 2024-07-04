@@ -11,7 +11,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
-new #[Layout('layouts.guest')] class extends Component
+new #[Layout('components.layouts.guest')] class extends Component
 {
     public string $name = '';
     public string $email = '';

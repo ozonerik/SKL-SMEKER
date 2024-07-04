@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend;
+namespace App\Livewire\Pages\Backend;
 
 use Livewire\Component;
 use Livewire\Attributes\Layout;
@@ -29,13 +29,13 @@ class Dashboardpage extends Component
         return redirect()->route('dashboard');
     }
     
-    #[Layout('layouts.app')]
+    #[Layout('components.layouts.app')]
     public function render()
     {
         $roles=Role::all();
         $data=[
             'roles'=>$roles,
         ];
-        return view('livewire.backend.dashboardpage',$data);
+        return view('livewire.pages.backend.dashboardpage',$data);
     }
 }

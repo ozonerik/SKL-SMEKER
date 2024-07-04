@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Home;
-use App\Livewire\Backend\Dashboardpage;
-use App\Livewire\Backend\Adminpage;
-use App\Livewire\Backend\Optpage;
-use App\Livewire\Backend\Userpage;
+use App\Livewire\Pages\Frontend\Home;
+use App\Livewire\Pages\Backend\Dashboardpage;
+use App\Livewire\Pages\Backend\Adminpage;
+use App\Livewire\Pages\Backend\Optpage;
+use App\Livewire\Pages\Backend\Userpage;
+use App\Livewire\Pages\Backend\Profilepage;
+use App\Livewire\Pages\Backend\Lockprofilepage;
 
 //Route::view('/', 'welcome');
 //Route::redirect('/', '/login');
@@ -30,17 +32,21 @@ Route::get('/dashboard', Dashboardpage::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::get('/profile', Profilepage::class)
+    ->middleware(['auth'])
+    ->name('profile');
+
+Route::get('/lockprofile', Lockprofilepage::class)
+    ->middleware(['auth'])
+    ->name('lockprofile');
+
 /* Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard'); */
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+//Route::view('profile', 'profile')->middleware(['auth'])->name('profile');
 
-Route::view('profilelock', 'profilelock')
-    ->middleware(['auth'])
-    ->name('profilelock');
+//Route::view('profilelock', 'profilelock')->middleware(['auth'])->name('profilelock');
 
 Route::get('/admin', Adminpage::class)->middleware(['auth', 'verified','role:admin','password.confirm'])->name('adminpage');  
 Route::get('/opt', Optpage::class)->middleware(['auth', 'verified','role:admin|operator'])->name('optpage');  

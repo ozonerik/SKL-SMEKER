@@ -9,7 +9,7 @@
                 @if(in_array(Route::currentRouteName(),['password.confirm']))
                 <x-ui.navitem label="Restricted Access" link="password.confirm" icon="bi bi-key-fill" />
                 @endif
-                <x-ui.navitem label="Profile" link="profilelock" icon="bi bi-person-circle" />
+                <x-ui.navitem label="Profile" link="lockprofile" icon="bi bi-person-circle" />
             </ul> <!--end::Sidebar Menu-->
         </nav>
     </div> <!--end::Sidebar Wrapper-->
