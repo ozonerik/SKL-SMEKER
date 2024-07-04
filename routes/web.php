@@ -28,28 +28,23 @@ Route::get('/create-symlink', function () {
     return "Symlink created successfully.";
 });
 
-Route::get('/dashboard', Dashboardpage::class)
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/profile', Profilepage::class)->name('profile');
+    Route::get('/lockprofile', Lockprofilepage::class)->name('lockprofile');
+    Route::group(['middleware' => ['verified']], function () {
 
-Route::get('/profile', Profilepage::class)
-    ->middleware(['auth'])
-    ->name('profile');
+        Route::get('/dashboard', Dashboardpage::class)->name('dashboard');
 
-Route::get('/lockprofile', Lockprofilepage::class)
-    ->middleware(['auth'])
-    ->name('lockprofile');
+        Route::group(['middleware' => ['role:admin']], function () {
+            Route::get('/admin', Adminpage::class)->middleware(['password.confirm'])->name('adminpage');  
+        });
+        Route::group(['middleware' => ['role:admin|operator']], function () {
+            Route::get('/opt', Optpage::class)->name('optpage');   
+        });
 
-/* Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard'); */
+        Route::get('/user', Userpage::class)->name('userpage');  
 
-//Route::view('profile', 'profile')->middleware(['auth'])->name('profile');
-
-//Route::view('profilelock', 'profilelock')->middleware(['auth'])->name('profilelock');
-
-Route::get('/admin', Adminpage::class)->middleware(['auth', 'verified','role:admin','password.confirm'])->name('adminpage');  
-Route::get('/opt', Optpage::class)->middleware(['auth', 'verified','role:admin|operator'])->name('optpage');  
-Route::get('/user', Userpage::class)->middleware(['auth', 'verified','role:admin|operator|user'])->name('userpage');  
+    });
+});
 
 require __DIR__.'/auth.php';
