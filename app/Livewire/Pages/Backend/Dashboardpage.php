@@ -23,10 +23,17 @@ class Dashboardpage extends Component
     public function save()
     {
         
-        //dd($this->only(['initext','iniradio','inicheck','iniselect','inifile']));
+        dd($this->only(['initext','iniradio','inicheck','iniselect','inifile']));
         //$this->inifile->store('compress','public');
-        $path=StoreFile($this->inifile,'compress');
+        //$path=StoreFile($this->inifile,'compress');
         return redirect()->route('dashboard');
+    }
+
+    public function mount(){
+        $this->initext='ada';
+        $this->iniradio='radio2';
+        $this->inicheck=true;
+        $this->iniselect='operator';
     }
     
     #[Layout('components.layouts.app')]

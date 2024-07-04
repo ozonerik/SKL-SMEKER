@@ -36,13 +36,13 @@
                     </div>
                 </div>
                 <x-forms.input name="current_password" type="password" icon="bi bi-lock-fill" label="Current Password"  placeholder="Current Password" required autocomplete="current-password" />
-                <x-forms.input name="password" id="update-password" type="password" icon="bi bi-lock-fill" label="New Password"  placeholder="New Password" required autocomplete="new-password" />
+                <x-forms.input name="newpassword" id="update-password" type="password" icon="bi bi-lock-fill" label="New Password"  placeholder="New Password" required autocomplete="new-password" />
                 <x-forms.input name="password_confirmation" type="password" icon="bi bi-lock-fill" label="Confirm Password"  placeholder="Confirm Password" required autocomplete="new-password" />
             </x-ui.card>
 
             <x-ui.card title="Delete Account" modaltarget="DeleteAccountModal" textbutton="Delete Account" btncolor="danger"  class="card-danger card-outline" >
                 {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-                <x-ui.modal id="DeleteAccountModal" btncolor="danger" submit="deleteUser" textsubmit="Delete Account" title="Delete Account">
+                <x-ui.modal id="DeleteAccountModal" btncolor="danger" submit="deleteUser" textsubmit="Delete Account" cancel="reseterror" textcancel="Cancel" title="Delete Account">
                     <h3 class="text-center">
                         {{ __('Are you sure you want to delete your account ?') }}
                     </h3>

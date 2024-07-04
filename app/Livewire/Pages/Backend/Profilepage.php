@@ -19,13 +19,19 @@ class Profilepage extends Component
     public string $name = '';
     public string $email = '';
     public string $current_password = '';
-    public string $password = '';
+    public string $newpassword = '';
     public string $password_confirmation = '';
+    public string $password = '';
 
+    public function reseterror()
+    {
+        $this->resetValidation();
+    }
+    
     /**
      * Mount the component.
      */
-    public function mount(): void
+    public function mount()
     {
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
@@ -34,7 +40,7 @@ class Profilepage extends Component
     /**
      * Update the profile information for the currently authenticated user.
      */
-    public function updateProfileInformation(): void
+    public function updateProfileInformation()
     {
         $user = Auth::user();
 
@@ -58,7 +64,7 @@ class Profilepage extends Component
     /**
      * Send an email verification notification to the current user.
      */
-    public function sendVerification(): void
+    public function sendVerification()
     {
         $user = Auth::user();
 
@@ -71,29 +77,30 @@ class Profilepage extends Component
         $user->sendEmailVerificationNotification();
 
         Session::flash('status', 'verification-link-sent');
+        flash()->options(['position' => 'bottom-right'])->success('Verification link sent');
     }
 
     /**
      * Update the password for the currently authenticated user.
      */
-    public function updatePassword(): void
+    public function updatePassword()
     {
         try {
             $validated = $this->validate([
                 'current_password' => ['required', 'string', 'current_password'],
-                'password' => ['required', 'string', Password::defaults(), 'confirmed'],
+                'newpassword' => ['required', 'string', Password::defaults(), 'confirmed'],
             ]);
         } catch (ValidationException $e) {
-            $this->reset('current_password', 'password', 'password_confirmation');
-
+            $this->reset('current_password', 'newpassword', 'password_confirmation');
+            flash()->options(['position' => 'bottom-right'])->error('Password updated failed');
             throw $e;
         }
 
         Auth::user()->update([
-            'password' => Hash::make($validated['password']),
+            'password' => Hash::make($validated['newpassword']),
         ]);
 
-        $this->reset('current_password', 'password', 'password_confirmation');
+        $this->reset('current_password', 'newpassword', 'password_confirmation');
 
         $this->dispatch('password-updated');
         flash()->options(['position' => 'bottom-right'])->success('Password updated');
@@ -102,14 +109,23 @@ class Profilepage extends Component
     /**
      * Delete the currently authenticated user.
      */
-    public function deleteUser(Logout $logout): void
+    public function deleteUser(Logout $logout)
     {
-        $this->validate([
+/*         $this->validate([
             'password' => ['required', 'string', 'current_password'],
-        ]);
+        ]); */
+
+        try {
+            $validated = $this->validate([
+                'password' => ['required', 'string', 'current_password'],
+            ]);
+        } catch (ValidationException $e) {
+            $this->reset('password');
+            throw $e;
+        }
 
         tap(Auth::user(), $logout(...))->delete();
-
+        flash()->options(['position' => 'bottom-right'])->success('User deleted success');
         $this->redirect('/', navigate: true);
     }
 

@@ -15,7 +15,7 @@ $btncolor=(isset($btncolor)) ? $btncolor : 'primary';
 $textsubmit=(isset($textsubmit)) ? $textsubmit : 'Submit';
 $textcancel=(isset($textcancel)) ? $textcancel : 'Cancel';
 @endphp
-<div class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $idlabel }}" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $idlabel }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
