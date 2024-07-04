@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use Flasher\Prime\FlasherInterface;
 
 new #[Layout('components.layouts.lockapp')] class extends Component
 {
@@ -28,7 +29,7 @@ new #[Layout('components.layouts.lockapp')] class extends Component
         }
 
         session(['auth.password_confirmed_at' => time()]);
-
+        flash()->options(['position' => 'bottom-right'])->success('Password confirmed');
         $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
     }
     public function cancel():void{

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use Flasher\Prime\FlasherInterface;
 
 new #[Layout('components.layouts.lockapp')] class extends Component
 {
@@ -15,12 +16,11 @@ new #[Layout('components.layouts.lockapp')] class extends Component
     {
         if (Auth::user()->hasVerifiedEmail()) {
             $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-
             return;
         }
 
         Auth::user()->sendEmailVerificationNotification();
-
+        flash()->options(['position' => 'bottom-right'])->success('Verification link sent');
         Session::flash('status', 'verification-link-sent');
     }
 
@@ -30,7 +30,7 @@ new #[Layout('components.layouts.lockapp')] class extends Component
     public function logout(Logout $logout): void
     {
         $logout();
-
+        flash()->options(['position' => 'bottom-right'])->success('Logout success');
         $this->redirect('/', navigate: true);
     }
 }; ?>

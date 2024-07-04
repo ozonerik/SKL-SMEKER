@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use Flasher\Prime\FlasherInterface;
 
 new #[Layout('components.layouts.guest')] class extends Component
 {
@@ -26,12 +27,12 @@ new #[Layout('components.layouts.guest')] class extends Component
 
         if ($status != Password::RESET_LINK_SENT) {
             $this->addError('email', __($status));
-
+            flash()->options(['position' => 'bottom-right'])->error('Password reset link failed sent');
             return;
         }
 
         $this->reset('email');
-
+        flash()->options(['position' => 'bottom-right'])->success('Password reset link sent');
         session()->flash('status', __($status));
     }
 }; ?>

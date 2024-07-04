@@ -9,6 +9,7 @@ use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Volt\Component;
+use Flasher\Prime\FlasherInterface;
 
 new #[Layout('components.layouts.guest')] class extends Component
 {
@@ -49,7 +50,7 @@ new #[Layout('components.layouts.guest')] class extends Component
                     'password' => Hash::make($this->password),
                     'remember_token' => Str::random(60),
                 ])->save();
-
+                flash()->options(['position' => 'bottom-right'])->success('Password updated success');
                 event(new PasswordReset($user));
             }
         );
@@ -59,12 +60,12 @@ new #[Layout('components.layouts.guest')] class extends Component
         // redirect them back to where they came from with their error message.
         if ($status != Password::PASSWORD_RESET) {
             $this->addError('email', __($status));
-
+            flash()->options(['position' => 'bottom-right'])->error('Reset password failed');
             return;
         }
 
         Session::flash('status', __($status));
-
+        
         $this->redirectRoute('login', navigate: true);
     }
 }; ?>
