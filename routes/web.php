@@ -12,7 +12,9 @@ use App\Livewire\Pages\Backend\Lockprofilepage;
 //Route::view('/', 'welcome');
 //Route::redirect('/', '/login');
 
-Route::get('/', Home::class);
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/', Home::class); 
+});
 
 Route::get('/optimize', function () {
     Artisan::call('optimize:clear');
