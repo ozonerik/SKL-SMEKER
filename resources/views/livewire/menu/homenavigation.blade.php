@@ -2,6 +2,7 @@
 
 use App\Livewire\Actions\Logout;
 use Livewire\Volt\Component;
+use Flasher\Prime\FlasherInterface;
 
 new class extends Component
 {
@@ -11,7 +12,7 @@ new class extends Component
     public function logout(Logout $logout): void
     {
         $logout();
-
+        flash()->options(['position' => 'bottom-right'])->success('Logout success');
         $this->redirect('/', navigate: true);
     }
 }; ?>

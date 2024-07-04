@@ -12,6 +12,7 @@ use Illuminate\Validation\ValidationException;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
+use Flasher\Prime\FlasherInterface;
 
 class Profilepage extends Component
 {
@@ -51,9 +52,7 @@ class Profilepage extends Component
         $user->save();
 
         $this->dispatch('profile-updated', name: $user->name);
-        session()->reflash();
-        session()->flash('status', 'Post successfully updated.');
-        $this->dispatch('bstoast');
+        flash()->options(['position' => 'bottom-right'])->success('Profile updated');
     }
 
     /**
@@ -97,6 +96,7 @@ class Profilepage extends Component
         $this->reset('current_password', 'password', 'password_confirmation');
 
         $this->dispatch('password-updated');
+        flash()->options(['position' => 'bottom-right'])->success('Password updated');
     }
 
     /**

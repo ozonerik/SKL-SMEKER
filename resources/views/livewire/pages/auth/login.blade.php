@@ -4,6 +4,7 @@ use App\Livewire\Forms\LoginForm;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use Flasher\Prime\FlasherInterface;
 
 new #[Layout('components.layouts.guest')] class extends Component
 {
@@ -21,6 +22,7 @@ new #[Layout('components.layouts.guest')] class extends Component
         Session::regenerate();
 
         $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        flash()->options(['position' => 'bottom-right'])->success('Login success');
     }
 }; ?>
 <div class="login-box">

@@ -10,6 +10,7 @@ use Livewire\Volt\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
+use Flasher\Prime\FlasherInterface;
 
 new #[Layout('components.layouts.guest')] class extends Component
 {
@@ -38,6 +39,7 @@ new #[Layout('components.layouts.guest')] class extends Component
         Auth::login($user);
 
         $this->redirect(route('dashboard', absolute: false), navigate: true);
+        flash()->options(['position' => 'bottom-right'])->success('Register success');
     }
 }; ?>
 
