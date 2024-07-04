@@ -51,7 +51,8 @@ class Profilepage extends Component
         $user->save();
 
         $this->dispatch('profile-updated', name: $user->name);
-        $this->dispatch('runbstoast');
+        session()->flash('status', 'Post successfully updated.');
+        $this->dispatch('bstoast');
     }
 
     /**

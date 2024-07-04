@@ -2,7 +2,11 @@
         {{ __('Profile') }}
 </x-slot>
 <div>
-    <x-ui.bstoast/>
+    
+    <div class="toast-container position-fixed top-0 end-0 p-3" wire:ignore>
+        <x-ui.bstoast id="status" message="sds" />
+    </div>
+   
     <div class="row">
         <div class="col-12"> <!-- Default box -->
             <x-ui.card title="Profile Information"  submit="updateProfileInformation" textsubmit="Save" btncolor="primary" class="card-primary card-outline">
