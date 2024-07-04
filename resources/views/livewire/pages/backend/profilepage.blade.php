@@ -3,8 +3,8 @@
 </x-slot>
 <div>
     
-    <div class="toast-container position-fixed top-0 end-0 p-3" wire:ignore>
-        <x-ui.bstoast id="status" message="sds" />
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <x-ui.bstoast type="status" :message="session('status')" />
     </div>
    
     <div class="row">
