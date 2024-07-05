@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use Livewire\WithFileUploads;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class Dashboardpage extends Component
 {
@@ -42,6 +43,7 @@ class Dashboardpage extends Component
         $roles=Role::all();
         $data=[
             'roles'=>$roles,
+            'user'=>User::get()
         ];
         return view('livewire.pages.backend.dashboardpage',$data);
     }
