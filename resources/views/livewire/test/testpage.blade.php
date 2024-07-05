@@ -1,14 +1,18 @@
-@push('css')
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+@assets
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/select/2.0.3/css/select.bootstrap5.css" />
-@endpush
-@push('js')
-<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
-<script src="https://cdn.datatables.net/select/2.0.3/js/dataTables.select.js"></script>
-<script src="https://cdn.datatables.net/select/2.0.3/js/select.bootstrap5.js"></script>
-<script>
+<link rel="stylesheet" href="https://cdn.datatables.net/select/2.0.3/css/select.bootstrap5.css" />
+
+<script data-navigate-once src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+<script data-navigate-once src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+<script data-navigate-once src="https://cdn.datatables.net/select/2.0.3/js/dataTables.select.js"></script>
+<script data-navigate-once src="https://cdn.datatables.net/select/2.0.3/js/select.bootstrap5.js"></script>
+<script data-navigate-once src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js" ></script>
+<script data-navigate-once src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js" ></script>
+@endassets
+@script
+<script data-navigate-once>
+document.addEventListener("livewire:navigated", () => {
     $('#example').DataTable({
         columnDefs: [
             {
@@ -21,10 +25,19 @@
             style: 'multi',
             selector: 'td:first-child'
         },
-        order: [[1, 'asc']]
+        order: [[1, 'asc']],
+        paging: true,
+        pageLength: 10,
+        lengthChange: true,
+        lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+        searching: true,
+        ordering: true,
+        responsive: true,
+        autoWidth: true,
     });
+});
 </script>
-@endpush
+@endscript
 <div>
     <table id="example" class="table display responsive table-striped" style="width:100%">
         <thead>

@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-12"> <!-- Default box -->
         <x-ui.card title="Dashboard" class="card-primary card-outline" cancel="" submit="save">
-            <x-ui.datatables id="mytable" :data="$user" />
+            <x-ui.datatables id="mytable" :tdata="$user" :thead="['Nama','Email']" :tbody="['name','email']" />
             <x-forms.input name="initext" type="text" id="nama" icon="bi bi-person" label="Nama"  placeholder="Nama" />
             <x-forms.input name="inifile" type="file" id="inifile" label="Upload"  placeholder="inifile" />
             <x-forms.check name="iniradio" type="radio" id="1" group='true' label="radio1" value="radio1"  />
