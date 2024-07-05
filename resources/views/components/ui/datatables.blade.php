@@ -4,7 +4,8 @@
     'thead',
     'tbody',
     'model',
-    'tbtn'
+    'tbtn',
+    'headbtn'
 ])
 
 @php
@@ -12,6 +13,8 @@ $id=isset($id)?$id:'sample';
 $tdata=isset($tdata)?$tdata:collect([]);
 $thead=isset($thead)?$thead:collect([]);
 $tbody=isset($tbody)?$tbody:collect([]);
+$tbtn=isset($tbtn)?$tbtn:collect([]);
+$headbtn=isset($headbtn)?$headbtn:collect([]);
 $col=[];
 for ($x = 2; $x <= count($thead)+2; $x++) {
     $col[] = $x;
