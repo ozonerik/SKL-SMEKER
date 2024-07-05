@@ -23,9 +23,7 @@ $cell=collect(['name','email']);
 @script
 <script data-navigate-once>
     let table = new DataTable('#{{ $id }}', {
-        retrieve: true,
         paging: true,
-        select: true,
         pageLength: 5,
         lengthChange: true,
         lengthMenu: [ [5, 25, 50, 100, -1], [5, 25, 50, 100, "All"] ],
