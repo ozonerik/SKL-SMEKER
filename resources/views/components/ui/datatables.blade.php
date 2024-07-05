@@ -23,14 +23,15 @@
 @script
 <script data-navigate-once>
 document.addEventListener("livewire:navigated", () => {
-    $('#{{ $id }}').DataTable({
+    let table = new DataTable('#{{ $id }}',{
         columnDefs: [
             {
                 orderable: false,
+                searchable: false,
                 render: DataTable.render.select(),
                 targets: 0
             },
-            { width: '5%', targets: 1 }
+            { width: '3%', targets: 1},
         ],
         select: {
             style: 'multi',
@@ -49,11 +50,25 @@ document.addEventListener("livewire:navigated", () => {
         },
         autoWidth: true,
     });
+
+    table.on( 'select', function ( e, dt, type, indexes ) {
+        if ( type === 'row' ) {
+                var nilai = table.rows({ selected: true }).data().pluck(1).toArray();
+                console.log(nilai);
+        }
+    });
+
+    table.on( 'deselect', function ( e, dt, type, indexes ) {
+        if ( type === 'row' ) {
+                var nilai = table.rows({ selected: true }).data().pluck(1).toArray();
+                console.log(nilai);
+        }
+    });
 });
 </script>
 @endscript
 <div>
-    <table id="{{ $id }}" class="table display responsive table-striped" style="width:100%">
+    <table id="{{ $id }}" class="table display responsive table-striped nowrap" style="width:100%">
         <thead>
             <tr>
                 <th></th>
