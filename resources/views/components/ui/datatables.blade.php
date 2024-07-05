@@ -34,6 +34,7 @@ document.addEventListener("livewire:navigated", () => {
             {
                 orderable: false,
                 searchable: false,
+                width: '2%',
                 render: DataTable.render.select(),
                 targets: 0
             },
