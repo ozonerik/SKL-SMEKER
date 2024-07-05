@@ -107,7 +107,11 @@ document.addEventListener("livewire:navigated", () => {
             { responsivePriority: 1, targets: 0 },
             { responsivePriority: 2, targets: 3 },
             { responsivePriority: 3, targets: -1 },
-            { targets: -1, orderable: false, searchable: false, render: function (data, type, row, meta)
+            { targets: -1, 
+                orderable: false, 
+                searchable: false, 
+                width: '4%',
+                render: function (data, type, row, meta)
                 {
 
                     if(@js($tbtn).includes('edit')){
