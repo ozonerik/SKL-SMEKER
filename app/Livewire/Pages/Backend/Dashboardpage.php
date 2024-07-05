@@ -24,11 +24,20 @@ class Dashboardpage extends Component
  
     public function save()
     {
-        
         dd($this->only(['initext','iniradio','inicheck','iniselect','inifile']));
         //$this->inifile->store('compress','public');
         //$path=StoreFile($this->inifile,'compress');
         return redirect()->route('dashboard');
+    }
+
+    public function onEdit($id)
+    {
+        dd('edit-'.$id);
+    }
+
+    public function onDelete($id)
+    {
+        dd('delete-'.$id);
     }
 
     public function mount(){

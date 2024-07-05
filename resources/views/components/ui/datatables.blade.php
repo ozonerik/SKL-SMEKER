@@ -3,7 +3,8 @@
     'tdata',
     'thead',
     'tbody',
-    'model'
+    'model',
+    'tbtn'
 ])
 
 @php
@@ -46,6 +47,20 @@ document.addEventListener("livewire:navigated", () => {
             { responsivePriority: 1, targets: 0 },
             { responsivePriority: 2, targets: 3 },
             { responsivePriority: 3, targets: -1 },
+            { targets: -1, orderable: false, searchable: false, render: function (data, type, row, meta)
+                {
+
+                    if(@js($tbtn).includes('edit')){
+                        data = data+"<button data-tbl='edit' wire:click='onEdit("+row[1]+")' class='btn btn-sm btn-success me-2' style='width:35px' data-toggle='tooltip' title='Edit' ><i class='bi bi-pencil-square'></i></button>";
+                    }
+
+                    if(@js($tbtn).includes('delete')){
+                        data = data+"<button data-tbl='del' wire:click='onDelete("+row[1]+")' class='btn btn-sm btn-danger me-2' style='width:35px' data-toggle='tooltip' title='Delete' ><i class='bi bi-trash'></i></button>";
+                    }
+
+                    return data;
+                }
+            }
         ],
         select: {
             style: 'multi',
@@ -94,6 +109,7 @@ document.addEventListener("livewire:navigated", () => {
                 @foreach($thead as $r)
                 <th>{{ $r }}</th>
                 @endforeach
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -105,16 +121,19 @@ document.addEventListener("livewire:navigated", () => {
                 @foreach($tbody as $v)
                 <td>{{ $row->$v}}</td>
                 @endforeach
+                <td></td>
             </tr>
             @endforeach
         </tbody>
         <tfoot>
             <tr>
                 <th></th>
+                <th>ID</th>
                 <th>No</th>
                 @foreach($thead as $r)
                 <th>{{ $r }}</th>
                 @endforeach
+                <th>Action</th>
             </tr>
         </tfoot>
     </table>
