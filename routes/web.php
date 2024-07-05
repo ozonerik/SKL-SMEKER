@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\Frontend\Home;
+use App\Livewire\Test\Testpage;
 use App\Livewire\Pages\Backend\Dashboardpage;
 use App\Livewire\Pages\Backend\Adminpage;
 use App\Livewire\Pages\Backend\Optpage;
@@ -14,6 +15,7 @@ use App\Livewire\Pages\Backend\Lockprofilepage;
 
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/', Home::class); 
+    Route::get('/test', Testpage::class); 
 });
 
 Route::get('/optimize', function () {
@@ -31,6 +33,7 @@ Route::get('/create-symlink', function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/test', Testpage::class); 
     Route::get('/profile', Profilepage::class)->name('profile');
     Route::get('/lockprofile', Lockprofilepage::class)->name('lockprofile');
     Route::group(['middleware' => ['verified']], function () {
