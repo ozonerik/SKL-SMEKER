@@ -19,6 +19,7 @@ class Dashboardpage extends Component
     public $inicheck;
     public $iniselect;
     public $inifile;
+    public $inidatatable;
 
  
     public function save()
