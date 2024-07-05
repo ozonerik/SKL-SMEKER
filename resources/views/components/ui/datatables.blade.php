@@ -12,24 +12,83 @@ $id=isset($id)?$id:'sample';
 $tdata=isset($tdata)?$tdata:collect([]);
 $thead=isset($thead)?$thead:collect([]);
 $tbody=isset($tbody)?$tbody:collect([]);
+$col=[];
+for ($x = 2; $x <= count($thead)+2; $x++) {
+    $col[] = $x;
+};
 @endphp
 
 @assets
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" />
+<!-- checkbox -->
 <link rel="stylesheet" href="https://cdn.datatables.net/select/2.0.3/css/select.bootstrap5.css" />
+<!-- checkbox -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css" />
+<!-- button -->
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css" />
 
 <script data-navigate-once src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script data-navigate-once src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+<!-- checkbox -->
 <script data-navigate-once src="https://cdn.datatables.net/select/2.0.3/js/dataTables.select.js"></script>
 <script data-navigate-once src="https://cdn.datatables.net/select/2.0.3/js/select.bootstrap5.js"></script>
+<!-- responsive -->
 <script data-navigate-once src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js" ></script>
 <script data-navigate-once src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js" ></script>
+<!-- button -->
+<script data-navigate-once src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js" ></script>
+<script data-navigate-once src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js" ></script>
+<!-- extension button 'copy', 'csv', 'excel', 'pdf', 'print' -->
+<script data-navigate-once src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" ></script>
+<script data-navigate-once src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js" ></script>
+<script data-navigate-once src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js" ></script>
+<script data-navigate-once src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js" ></script>
+<script data-navigate-once src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js" ></script>
 @endassets
 @script
 <script data-navigate-once>
 document.addEventListener("livewire:navigated", () => {
     let table = new DataTable('#{{ $id }}',{
+        buttons: [
+            { 
+                extend: 'pdf', 
+                text: "<i class='bi bi-filetype-pdf'></i>",
+                className: 'btn-info', 
+                titleAttr: 'pdf',
+                exportOptions: {
+                    columns: @js($col)
+                }
+            },
+            { 
+                extend: 'excel', 
+                text: "<i class='bi bi-file-spreadsheet'></i>",
+                className: 'btn-success', 
+                titleAttr: 'excel',
+                exportOptions: {
+                    columns: @js($col)
+                }
+            },
+            { 
+                extend: 'print', 
+                text: "<i class='bi bi-printer'></i>",
+                className: 'btn-warning', 
+                titleAttr: 'print',
+                exportOptions: {
+                    columns: @js($col)
+                }
+            },
+            {
+                text: "<i class='bi bi-trash'></i>",
+                className: 'btn-danger', 
+                titleAttr: 'delete',
+                action: function (e, dt, node, config, cb) {
+                    Livewire.dispatch('delAll');
+                }
+            }
+    ],
+    layout: {
+        topStart: 'buttons'
+    },
         columnDefs: [
             {
                 orderable: false,

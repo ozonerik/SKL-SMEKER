@@ -9,6 +9,7 @@ use Livewire\WithFileUploads;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use Livewire\Attributes\On; 
 
 class Dashboardpage extends Component
 {
@@ -28,6 +29,12 @@ class Dashboardpage extends Component
         //$this->inifile->store('compress','public');
         //$path=StoreFile($this->inifile,'compress');
         return redirect()->route('dashboard');
+    }
+
+    #[On('delAll')]
+    public function delAll()
+    {
+        dd('Ini Delete All');
     }
 
     public function onEdit($id)
