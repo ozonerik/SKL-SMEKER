@@ -47,16 +47,14 @@ document.addEventListener("livewire:navigated", () => {
                 searchable: false,
                 width: '2%',
                 render: DataTable.render.select(),
-                targets: 0
+                targets: 0,
             },
             {
                 visible: false, 
                 searchable: false, 
                 orderable: false,
-                targets: 1
+                targets: 1,
             },
-            { responsivePriority: 1, targets: 0 },
-            { responsivePriority: 2, targets: 3 },
             @endif
 
             @if(isset($model))
@@ -65,9 +63,9 @@ document.addEventListener("livewire:navigated", () => {
             { width: '2%', targets: [0]},
             @endif
 
-            @if(count($tbtn)>0)
-            { responsivePriority: 3, targets: -1 },
-            { targets: -1, 
+            @if(count($tbtn)>0)  
+            { 
+                targets: -1, 
                 orderable: false, 
                 searchable: false, 
                 width: '4%',
@@ -87,7 +85,8 @@ document.addEventListener("livewire:navigated", () => {
                     data=data+'</div>';
 
                     return data;
-                }
+                },
+                responsivePriority: -1
             }
             @endif
 
