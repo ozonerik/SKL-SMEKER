@@ -13,10 +13,9 @@ use App\Livewire\Pages\Backend\Lockprofilepage;
 //Route::view('/', 'welcome');
 //Route::redirect('/', '/login');
 
-Route::group(['middleware' => ['guest']], function () {
-    Route::get('/', Home::class); 
-    Route::get('/test', Testpage::class); 
-});
+Route::get('/', Home::class); 
+
+Route::get('/test', Testpage::class); 
 
 Route::get('/optimize', function () {
     Artisan::call('optimize:clear');
@@ -33,7 +32,6 @@ Route::get('/create-symlink', function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/test', Testpage::class); 
     Route::get('/profile', Profilepage::class)->name('profile');
     Route::get('/lockprofile', Lockprofilepage::class)->name('lockprofile');
     Route::group(['middleware' => ['verified']], function () {
