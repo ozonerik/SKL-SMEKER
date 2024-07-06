@@ -74,13 +74,17 @@ document.addEventListener("livewire:navigated", () => {
                 render: function (data, type, row, meta)
                 {
 
+                    data='<div class="btn-group" role="group">';
+
                     if(@js($tbtn).includes('edit')){
-                        data = data+"<button wire:click='onEdit("+row[1]+")' class='btn btn-sm btn-success me-2' style='width:35px' data-toggle='tooltip' title='edit' ><i class='bi bi-pencil-square'></i></button>";
+                        data = data+"<button wire:click='onEdit("+row[1]+")' class='btn btn-sm btn-success' style='width:35px' data-toggle='tooltip' title='edit' ><i class='bi bi-pencil-square'></i></button>";
                     }
 
                     if(@js($tbtn).includes('delete')){
-                        data = data+"<button wire:click='onDelete("+row[1]+")' class='btn btn-sm btn-danger me-2' style='width:35px' data-toggle='tooltip' title='delete' ><i class='bi bi-trash'></i></button>";
+                        data = data+"<button wire:click='onDelete("+row[1]+")' class='btn btn-sm btn-danger' style='width:35px' data-toggle='tooltip' title='delete' ><i class='bi bi-trash'></i></button>";
                     }
+
+                    data=data+'</div>';
 
                     return data;
                 }
@@ -143,7 +147,7 @@ document.addEventListener("livewire:navigated", () => {
 @endif
 @if(count($headbtn)>0)
 <div class="col-12 text-center text-md-start">
-    <div class="btn-group mb-2" role="group" aria-label="Basic example">
+    <div class="btn-group mb-2" role="group">
         @if(in_array('add',$headbtn))
         <button type="button" wire:click="add" class="btn btn-primary" data-toggle='tooltip' title='add data' ><i class="bi bi-plus-lg"></i></button>
         @endif
