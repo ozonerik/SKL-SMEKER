@@ -118,12 +118,12 @@ document.addEventListener("livewire:navigated", () => {
 </script>
 @endscript
 <div class="row">
-@if(count($headbtn)>0)
 @if(isset($title))
 <div class="col-12 text-center">
     <h4><strong>{{ $title }}</strong></h4>
 </div>
 @endif
+@if(count($headbtn)>0)
 <div class="col-12">
     <div class="btn-group mb-2" role="group" aria-label="Basic example">
         @if(in_array('add',$headbtn))
