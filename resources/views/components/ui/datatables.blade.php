@@ -142,7 +142,7 @@ document.addEventListener("livewire:navigated", () => {
 </div>
 @endif
 @if(count($headbtn)>0)
-<div class="col-12">
+<div class="col-12 text-center text-md-start">
     <div class="btn-group mb-2" role="group" aria-label="Basic example">
         @if(in_array('add',$headbtn))
         <button type="button" wire:click="add" class="btn btn-primary" data-toggle='tooltip' title='add data' ><i class="bi bi-plus-lg"></i></button>
