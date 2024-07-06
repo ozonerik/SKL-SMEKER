@@ -36,6 +36,11 @@ class Dashboardpage extends Component
         dd('Ini Delete Selection');
     }
 
+    public function generatePDF()
+    {
+        $this->dispatch('tesmodal');
+    }
+
     public function onEdit($id)
     {
         dd('edit-'.$id);

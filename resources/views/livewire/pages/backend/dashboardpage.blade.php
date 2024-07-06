@@ -3,12 +3,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 <script data-navigate-once src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endpush
+@script 
+<script>
+    document.addEventListener('livewire:navigated', function () {
+        Livewire.on('tesmodal', function () {
+            $('#mymodal').modal('show');
+        });
+    });
+</script>
+@endscript
 <x-slot name="header">
     Dashboard
 </x-slot>
 <div>
     <div class="row">
-        <div class="col-12"> <!-- Default box -->
+        <div class="col-12">
+
+        <x-ui.modal id="mymodal" btncolor="danger" submit="deleteUser" textsubmit="Delete Account" title="Delete Account">
+                test modal
+        </x-ui.modal>
+
         <x-ui.card title="Dashboard" class="card-primary card-outline" cancel="" submit="save">
             {{ print_r($inidatatable) }}
             <x-ui.datatables id="mytable" title="Ini Datatable" model="inidatatable" :selectvalue="$inidatatable" :tdata="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','delete']" :headbtn="['pdf','delete']"/>
