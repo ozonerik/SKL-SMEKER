@@ -11,7 +11,7 @@
         <div class="col-12"> <!-- Default box -->
         <x-ui.card title="Dashboard" class="card-primary card-outline" cancel="" submit="save">
             {{ print_r($inidatatable) }}
-            <x-ui.datatables id="mytable" model="inidatatable" :tdata="$user" :thead="['Nama','Email']" :tbody="['name','email']" :headbtn="['pdf']"/>
+            <x-ui.datatables id="mytable" model="inidatatable" :tdata="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','delete']" :headbtn="['pdf','excel','print','delete']"/>
             <x-forms.input name="initext" type="text" id="nama" icon="bi bi-person" label="Nama"  placeholder="Nama" />
             <x-forms.input name="inifile" type="file" id="inifile" label="Upload"  placeholder="inifile" />
             <x-forms.check name="iniradio" type="radio" id="1" group='true' label="radio1" value="radio1"  />

@@ -10,11 +10,11 @@
 
 @php
 $id=isset($id)?$id:'sample';
-$tdata=isset($tdata)?$tdata:collect([]);
-$thead=isset($thead)?$thead:collect([]);
-$tbody=isset($tbody)?$tbody:collect([]);
-$tbtn=isset($tbtn)?$tbtn:collect([]);
-$headbtn=isset($headbtn)?$headbtn:collect([]);
+$tdata=isset($tdata)?$tdata:[];
+$thead=isset($thead)?$thead:[];
+$tbody=isset($tbody)?$tbody:[];
+$tbtn=isset($tbtn)?$tbtn:[];
+$headbtn=isset($headbtn)?$headbtn:[];
 $col=[];
 for ($x = 2; $x <= count($thead)+2; $x++) {
     $col[] = $x;
@@ -54,18 +54,20 @@ document.addEventListener("livewire:navigated", () => {
     let table = new DataTable('#{{ $id }}',{
         buttons: [
             { 
-                extend: 'pdf', 
-                text: "<i class='bi bi-filetype-pdf'></i>",
-                className: 'btn-info', 
-                titleAttr: 'pdf',
-                exportOptions: {
-                    columns: @js($col)
-                }
+                
+                    extend: 'pdf', 
+                    text: "<i class='bi bi-filetype-pdf'></i>",
+                    className: "btn-info @if(!in_array('pdf',$headbtn)) d-none @endif ", 
+                    titleAttr: 'pdf',
+                    exportOptions: {
+                        columns: @js($col)
+                    }
+                
             },
             { 
                 extend: 'excel', 
                 text: "<i class='bi bi-file-spreadsheet'></i>",
-                className: 'btn-success', 
+                className: "btn-success @if(!in_array('excel',$headbtn)) d-none @endif", 
                 titleAttr: 'excel',
                 exportOptions: {
                     columns: @js($col)
@@ -74,7 +76,7 @@ document.addEventListener("livewire:navigated", () => {
             { 
                 extend: 'print', 
                 text: "<i class='bi bi-printer'></i>",
-                className: 'btn-warning', 
+                className: "btn-warning @if(!in_array('print',$headbtn)) d-none @endif", 
                 titleAttr: 'print',
                 exportOptions: {
                     columns: @js($col)
@@ -82,7 +84,7 @@ document.addEventListener("livewire:navigated", () => {
             },
             {
                 text: "<i class='bi bi-trash'></i>",
-                className: 'btn-danger', 
+                className: "btn-danger @if(!in_array('delete',$headbtn)) d-none @endif", 
                 titleAttr: 'delete',
                 action: function (e, dt, node, config, cb) {
                     Livewire.dispatch('delAll');
