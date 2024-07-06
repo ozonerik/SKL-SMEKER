@@ -16,6 +16,7 @@ $thead=isset($thead)?$thead:[];
 $tbody=isset($tbody)?$tbody:[];
 $tbtn=isset($tbtn)?$tbtn:[];
 $headbtn=isset($headbtn)?$headbtn:[];
+$model=isset($model)?$model:null;
 @endphp
 
 @assets
@@ -33,15 +34,14 @@ $headbtn=isset($headbtn)?$headbtn:[];
 <!-- responsive -->
 <script data-navigate-once src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js" ></script>
 <script data-navigate-once src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js" ></script>
-<!-- button -->
-<script data-navigate-once src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js" ></script>
-<script data-navigate-once src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js" ></script>
+
 @endassets
 @script
 <script data-navigate-once>
 document.addEventListener("livewire:navigated", () => {
     let table = new DataTable('#{{ $id }}',{
         columnDefs: [
+            @if(isset($model))
             {
                 orderable: false,
                 searchable: false,
@@ -55,9 +55,16 @@ document.addEventListener("livewire:navigated", () => {
                 orderable: false,
                 targets: 1
             },
-            { width: '2%', targets: [1,2]},
             { responsivePriority: 1, targets: 0 },
             { responsivePriority: 2, targets: 3 },
+            @endif
+
+            @if(isset($model))
+            { width: '2%', targets: [1,2]},
+            @else
+            { width: '2%', targets: [0]},
+            @endif
+
             @if(count($tbtn)>0)
             { responsivePriority: 3, targets: -1 },
             { targets: -1, 
@@ -79,12 +86,18 @@ document.addEventListener("livewire:navigated", () => {
                 }
             }
             @endif
+
         ],
+
         select: {
-            style: 'multi',
+            style: "{{isset($model)?'multi':'os'}}",
             selector: 'td:first-child'
         },
-        order: [[1, 'asc']],
+
+        order: [
+            ["{{isset($model)?'2':'0'}}", 'asc']
+            
+        ],
         paging: true,
         pageLength: 10,
         lengthChange: true,
@@ -95,24 +108,29 @@ document.addEventListener("livewire:navigated", () => {
         autoWidth: true,
     });
 
-    table.on( 'select', function ( e, dt, type, indexes ) {
-        if ( type === 'row' ) {
-                var nilai = table.rows({ selected: true }).data().pluck(1).toArray();
-                //console.log(nilai);
-                if(@js($model) !== 'undefined' ){
-                    @this.set('{{ $model }}', nilai);
-                }
-        }
-    });
+    
+        table.on( 'select', function ( e, dt, type, indexes ) {
+            
+            if ( type === 'row' ) {
+                    var nilai = table.rows({ selected: true }).data().pluck(1).toArray();
+                    if(@js($model) !== undefined){
+                        @this.set('{{ $model }}', nilai);
+                    }
+                    
+                    
+            }
+        });
+        table.on( 'deselect', function ( e, dt, type, indexes ) {
+            if ( type === 'row' ) {
+                    var nilai = table.rows({ selected: true }).data().pluck(1).toArray();
+                    if(@js($model) !== undefined){
+                        @this.set('{{ $model }}', nilai);
+                    }
+            }
+        });
 
-    table.on( 'deselect', function ( e, dt, type, indexes ) {
-        if ( type === 'row' ) {
-                var nilai = table.rows({ selected: true }).data().pluck(1).toArray();
-                if(@js($model) !== 'undefined' ){
-                    @this.set('{{ $model }}', nilai);
-                }
-        }
-    });
+
+    
 
 },{once:true});
 </script>
@@ -145,8 +163,10 @@ document.addEventListener("livewire:navigated", () => {
     <table id="{{ $id }}" class="table display responsive table-striped nowrap" style="width:100%">
         <thead>
             <tr>
+                @if(!empty($model))
                 <th></th>
                 <th>ID</th>
+                @endif
                 <th>No</th>
                 @foreach($thead as $r)
                 <th>{{ $r }}</th>
@@ -159,8 +179,10 @@ document.addEventListener("livewire:navigated", () => {
         <tbody>
             @foreach($tdata as $key=>$row)
             <tr>
+                @if(!empty($model))
                 <td></td>
                 <td>{{ $row->id }}</td>
+                @endif
                 <td>{{1+$key++}}</td>
                 @foreach($tbody as $v)
                 <td>{{ $row->$v}}</td>
@@ -173,8 +195,10 @@ document.addEventListener("livewire:navigated", () => {
         </tbody>
         <tfoot>
             <tr>
+                @if(!empty($model))
                 <th></th>
                 <th>ID</th>
+                @endif
                 <th>No</th>
                 @foreach($thead as $r)
                 <th>{{ $r }}</th>
