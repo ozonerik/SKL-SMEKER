@@ -33,7 +33,7 @@ class Dashboardpage extends Component
 
     public function delSel()
     {
-        ('Ini Delete Selection');
+        dd('Ini Delete Selection');
     }
 
     public function onEdit($id)
