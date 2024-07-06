@@ -31,10 +31,9 @@ class Dashboardpage extends Component
         return redirect()->route('dashboard');
     }
 
-    #[On('delAll')]
-    public function delAll()
+    public function delSel()
     {
-        dd('Ini Delete All');
+        ('Ini Delete Selection');
     }
 
     public function onEdit($id)
