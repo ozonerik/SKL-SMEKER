@@ -92,7 +92,8 @@ document.addEventListener("livewire:navigated", () => {
             }
     ],
     layout: {
-        topStart: 'buttons'
+        topStart: 'pageLength',
+        top1Start: 'buttons',
     },
         columnDefs: [
             {
