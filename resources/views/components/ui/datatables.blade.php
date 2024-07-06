@@ -6,7 +6,8 @@
     'tbody',
     'model',
     'tbtn',
-    'headbtn'
+    'headbtn',
+    'selectvalue'
 ])
 
 @php
@@ -16,6 +17,7 @@ $thead=isset($thead)?$thead:[];
 $tbody=isset($tbody)?$tbody:[];
 $tbtn=isset($tbtn)?$tbtn:[];
 $headbtn=isset($headbtn)?$headbtn:[];
+$selectvalue=isset($selectvalue)?$selectvalue:[];
 $model=isset($model)?$model:null;
 @endphp
 
@@ -154,10 +156,10 @@ document.addEventListener("livewire:navigated", () => {
         <button type="button" wire:click="generatePDF" class="btn btn-success" data-toggle='tooltip' title='export to pdf' ><i class="bi bi-filetype-pdf"></i></button>
         @endif
         @if(in_array('delete',$headbtn))
-        <button type="button" wire:click="delSel" class="btn btn-danger" data-toggle='tooltip' title='delete selected'><i class="bi bi-trash"></i></button>
+        <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="delSel" class="btn btn-danger" data-toggle='tooltip' title='delete selected'><i class="bi bi-trash"></i></button>
         @endif
         @if(in_array('edit',$headbtn))
-        <button type="button" wire:click="editSel" class="btn btn-info" data-toggle='tooltip' title='edit selected'><i class="bi bi-pencil-square"></i></button>
+        <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="editSel" class="btn btn-info" data-toggle='tooltip' title='edit selected'><i class="bi bi-pencil-square"></i></button>
         @endif
     </div>
 </div>
