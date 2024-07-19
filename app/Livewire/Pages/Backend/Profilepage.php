@@ -74,6 +74,7 @@ class Profilepage extends Component
 
         $this->dispatch('profile-updated', name: $user->name);
         flash()->options(['position' => 'bottom-right'])->success('Profile updated');
+        $this->redirectIntended(default: route('profile', absolute: false), navigate: true);
     }
 
     /**
@@ -119,6 +120,7 @@ class Profilepage extends Component
 
         $this->dispatch('password-updated');
         flash()->options(['position' => 'bottom-right'])->success('Password updated');
+        
     }
 
     /**
