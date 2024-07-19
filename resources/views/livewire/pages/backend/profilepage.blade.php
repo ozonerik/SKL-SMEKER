@@ -1,10 +1,15 @@
+@push('css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+<script data-navigate-once src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+@endpush
 <x-slot name="header">
         {{ __('Profile') }}
 </x-slot>
 <div>
     <div class="row">
         <div class="col-12"> <!-- Default box -->
-            <x-ui.card title="Profile Information"  submit="updateProfileInformation" textsubmit="Save" btncolor="primary" class="card-primary card-outline">
+            <x-ui.card title="Profile Information" submit="updateProfileInformation" textsubmit="Save" btncolor="primary" class="card-primary card-outline">
                 <div class="row mb-3">
                     <div class="col-12">
                     {{ __("Update your account's profile information and email address.") }}
@@ -12,6 +17,9 @@
                 </div>
                 <x-forms.input name="name" icon="bi bi-person" label="Full Name"  placeholder="Full Name" required autofocus autocomplete="name" />
                 <x-forms.input name="email" type="email" icon="bi bi-envelope" label="Email address"  placeholder="Email" required autocomplete="username" />
+                <x-forms.select disabled select2="true" label="Roles" id="role"  name="role" :data="$roles"  value="name" txtvalue="name" placeholder="Select Roles" />
+                <x-forms.input name="photo" type="file" id="photo" label="Photo Profile"  placeholder="Upload Photo Profile" />
+
                 @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
                 <x-ui.callout type="info">
                     <p>

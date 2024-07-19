@@ -13,15 +13,23 @@ use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Flasher\Prime\FlasherInterface;
+use Spatie\Permission\Models\Role;
+use Livewire\WithFileUploads;
+use Intervention\Image\Laravel\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class Profilepage extends Component
 {
+    use WithFileUploads;
+
     public string $name = '';
     public string $email = '';
     public string $current_password = '';
     public string $newpassword = '';
     public string $password_confirmation = '';
     public string $password = '';
+    public $role,$photo;
+    private $oldphoto;
 
     public function reseterror()
     {
@@ -35,6 +43,7 @@ class Profilepage extends Component
     {
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
+        $this->role = Auth::user()->getRoleNames()->first();
     }
 
     /**
@@ -43,10 +52,13 @@ class Profilepage extends Component
     public function updateProfileInformation()
     {
         $user = Auth::user();
+        $this->oldphoto = Auth::user()->photo;
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+            'role' => ['required'],
+            'photo' => ['nullable','image'],
         ]);
 
         $user->fill($validated);
@@ -55,7 +67,10 @@ class Profilepage extends Component
             $user->email_verified_at = null;
         }
 
+        $user->photo=StoreFile($this->photo,'photos',$this->oldphoto);
         $user->save();
+        $user->syncRoles([$this->role]);
+        $this->photo=null;
 
         $this->dispatch('profile-updated', name: $user->name);
         flash()->options(['position' => 'bottom-right'])->success('Profile updated');
@@ -132,6 +147,10 @@ class Profilepage extends Component
     #[Layout('components.layouts.app')]
     public function render()
     {
-        return view('livewire.pages.backend.profilepage');
+        $data=[
+            'roles'=>Role::all(),
+            'user'=>User::get()
+        ];
+        return view('livewire.pages.backend.profilepage',$data);
     }
 }

@@ -18,7 +18,14 @@ $type=(isset($type)) ? $type : 'text';
 $icontext=(isset($icontext)) ? $icontext : null;
 $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
 @endphp
-<div class="mb-3 mt-1 {{ ($collabel)?'row':'' }}">
+<div class="mb-3 mt-1 {{ ($collabel)?'row':'' }}"
+x-data="{ uploading: false, progress: 0 }"
+x-on:livewire-upload-start="uploading = true"
+x-on:livewire-upload-finish="uploading = false"
+x-on:livewire-upload-cancel="uploading = false"
+x-on:livewire-upload-error="uploading = false"
+x-on:livewire-upload-progress="progress = $event.detail.progress"
+>
     @if(isset($label))
     <label for="{{ $id }}" class="{{ ($collabel)?'col-sm-2 col-form-label':'form-label' }}">{{ $label }}</label>
     @endif
@@ -38,6 +45,7 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
         @endif
         <input
         wire:model="{{ $name }}" 
+        wire:loading.attr="disabled"
         name="{{ $name }}"
         id="{{ $id }}" 
         {{ $attributes->merge([
@@ -74,4 +82,7 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
     @if($collabel)
     </div>
     @endif
+    <div class="progress mt-2" role="progressbar" x-show="uploading">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"  :style="'width: ' + progress + '%; border-radius: 0.375rem; '" ></div>
+        </div>
 </div>
