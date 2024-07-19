@@ -52,7 +52,7 @@ class Profilepage extends Component
     public function updateProfileInformation()
     {
         $user = Auth::user();
-        $this->oldphoto = Auth::user()->photo;
+        
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -67,6 +67,7 @@ class Profilepage extends Component
             $user->email_verified_at = null;
         }
 
+        $this->oldphoto = Auth::user()->photo;
         $user->photo=StoreFile($this->photo,'photos',$this->oldphoto);
         $user->save();
         $user->syncRoles([$this->role]);

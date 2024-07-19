@@ -32,8 +32,17 @@ if (!function_exists('StoreFile')) {
 
 if (!function_exists('showimg')) {
     function showimg($imgpath, $avatar=false) { 
-        if(Storage::disk('public')->exists($imgpath)){
+
+        if(!empty($imgpath)){
+            if(Storage::disk('public')->exists($imgpath)){
                 $val=asset('storage/'.$imgpath);
+            }else{
+                if($avatar){
+                    $val=asset('img/avatar.png');
+                }else{
+                    $val=asset('img/image.png');
+                }
+            } 
         }else{
             if($avatar){
                 $val=asset('img/avatar.png');
@@ -41,6 +50,7 @@ if (!function_exists('showimg')) {
                 $val=asset('img/image.png');
             }
         }
+
         return $val;
     }
 }
