@@ -1,66 +1,108 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## About SKL
+<b>SKL</b>
+adalah aplikasi untuk mendownload Surat Keterangan Lulus (SKL) SMK Negeri 1 Krangkeng secara online
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+## Minimum Server requirements
+<ul>
+    <li>PHP 8.2</li>
+    <li>
+        Enable PHP extension: <br>
+        <code>curl, fileinfo, gd, intl, mbstring, mysqli, openssl, pdo_mysql, xsl, zip</code><br>
+        Cek Your PHP Version<br>
+        <code>php -v</code>
+    </li>
+</ul>
+
+## How Install & Running
+<p>
+    open Terminal <br>
+    <code>git clone https://github.com/ozonerik/SKL-SMEKER.git</code><br>
+    <code>cd SKL-SMEKER</code><br>
+    <code>composer install</code><br>
+    <code>cp .env.example .env</code><br>
+    <code>php artisan key:generate</code><br>
+</p>
+<p>
+    open .env file and edit like below<br>
+    <code>DB_CONNECTION=mysql</code><br>
+    <code>DB_HOST=127.0.0.1</code><br>
+    <code>DB_PORT=3306</code><br>
+    <code>DB_DATABASE=skl</code><br>
+    <code>DB_USERNAME=root</code><br>
+    <code>DB_PASSWORD=</code><br>
+</p>
+<p>
+    open Terminal <br>
+    <code>php artisan migrate:fresh --seed</code><br>
+     <code>php artisan storage:link</code><br>
+    <code>php artisan optimize:clear</code><br>
+    </code>
 </p>
 
-## About Laravel
+<p>
+    NPM Run Build Vite::asset <br>
+    <code>npm run build</code>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p>
+    Running Apps <br>
+    <code>php artisan serve</code><br>
+    Access <code>http://localhost:8000</code> via Browser
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p>
+    Updated Apps <br>
+    <code>git pull origin master</code><br>
+    Access <code>http://localhost:8000</code> via Browser
+</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
+<b><i>Features of eSawah v11.1</i></b>
+<ul>
+    <li>Lararvel 11.14</li>
+    <li>Admin Dashboard using adminlte 4</li>
+    <li>Bootstrap 5.3</li>
+    <li>Livewire 3</li>
+    <li>Datatable 2.1</li>
+    <li>Spatie Permission 6</li>
+    <li>Select2</li>
+    <li>php-flasher 2</li>
+    <li>Component Form</li>
+    <li>image intervention 3</li>
+</ul>
 
-## Learning Laravel
+## Changelog
+<b><i>Changelog of SKL</i></b>
+<ul>
+    <li>Fixed Profile Pages</li>
+    <li>Fixed Component Form</li>
+    <li>Fixed Adminlte 4</li>
+    <li>Fixed Darkmode</li>
+    <li>Fixed Roles User</li>
+    <li>Fixed Multi Select Datatables</li>
+    <li>Fixed Modal Bootstrap</li>
+    <li>Fixed Flash Message</li>
+    <li>Fixed Select2</li>
+    <li>Fixed Photo Profile</li>
+    <li>Fixed Compress Image</li>
+</ul>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Packages
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **[Laravel 11](https://laravel.com/docs/11.x/releases)**
+- **[Livewire 3](https://livewire.laravel.com/docs/quickstart)**
+- **[Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)**
+- **[Bootstrap Icon](https://icons.getbootstrap.com/)**
+- **[Spatie Permission 6](https://spatie.be/docs/laravel-permission/v6/introduction)**
+- **[Admin LTE 4](https://github.com/ColorlibHQ/AdminLTE)**
+- **[select2/select2](https://github.com/select2/select2)**
+- **[datatables.net](https://datatables.net/examples/index)**
+- **[Intervention/image-laravel](https://github.com/Intervention/image-laravel)**
+- **[PHP Flasher](https://php-flasher.io/laravel/)**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+## Developer
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Aplikasi ini dibuat oleh  [M. Ade Erik](mailto:ozonerik@gmail.com)
