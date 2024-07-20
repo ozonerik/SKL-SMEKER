@@ -57,7 +57,7 @@ adalah aplikasi untuk mendownload Surat Keterangan Lulus (SKL) SMK Negeri 1 Kran
 </p>
 
 ## Features
-<b><i>Features of eSawah v11.1</i></b>
+<b><i>Features of SKL</i></b>
 <ul>
     <li>Lararvel 11.14</li>
     <li>Admin Dashboard using adminlte 4</li>
