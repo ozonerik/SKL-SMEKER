@@ -31,7 +31,7 @@ $textcancel=(isset($textcancel)) ? $textcancel : 'Cancel';
             @if(isset($submit))
                 <div class="modal-footer">
                     <div class="col float-start">
-                        <button type="submit" class="btn btn-{{ $btncolor }} ">{{ $textsubmit }}</button>
+                        <button type="submit" wire:loading.attr="disabled" class="btn btn-{{ $btncolor }} ">{{ $textsubmit }}</button>
                     </div>
                     <div clas="col float-end">
                     @if(isset($cancel))

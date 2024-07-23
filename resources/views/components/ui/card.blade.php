@@ -38,7 +38,7 @@ $textbutton=(isset($textbutton)) ? $textbutton : 'Submit';
 
     @if(isset($modaltarget))
         <div class="card-footer">
-            <button type="button" class="btn btn-{{ $btncolor }}" data-bs-toggle="modal" data-bs-target="#{{ $modaltarget }}">
+            <button type="button" wire:loading.attr="disabled" class="btn btn-{{ $btncolor }}" data-bs-toggle="modal" data-bs-target="#{{ $modaltarget }}">
                 {{ $textbutton }}
             </button>
             @if(isset($cancel))
@@ -49,7 +49,7 @@ $textbutton=(isset($textbutton)) ? $textbutton : 'Submit';
 
     @if(isset($button))
         <div class="card-footer">
-            <button type="button" wire:click="{{ $button }}" class="btn btn-{{ $btncolor }}" >
+            <button type="button" wire:loading.attr="disabled" wire:click="{{ $button }}" class="btn btn-{{ $btncolor }}" >
                 {{ $textbutton }}
             </button>
             @if(isset($cancel))
@@ -60,7 +60,7 @@ $textbutton=(isset($textbutton)) ? $textbutton : 'Submit';
 
     @if(isset($submit))
         <div class="card-footer">
-                <button type="submit" class="btn btn-{{ $btncolor }}">{{ $textsubmit }}</button>
+                <button type="submit" wire:loading.attr="disabled" class="btn btn-{{ $btncolor }}">{{ $textsubmit }}</button>
             @if(isset($cancel))
                 <button type="button" wire:click="{{ $cancel }}" class="btn float-end">{{ $textcancel }}</button>
             @endif

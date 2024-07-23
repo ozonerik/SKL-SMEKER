@@ -94,7 +94,9 @@ $isinvalid=($errors->has($name)) ? 'is-invalid' : '';
     @endif
     @if($type=='file')
     <div class="progress mt-2" role="progressbar" x-show="uploading">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"  :style="'width: ' + progress + '%; border-radius: 0.375rem; '" ></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"  :style="'width: ' + progress + '%; border-radius: 0.375rem; '" >
+            <span class="progress-value" x-text="progress + '%'"></span>
+        </div>
     </div>
     @endif
 </div>
