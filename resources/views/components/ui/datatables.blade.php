@@ -140,78 +140,85 @@ document.addEventListener("livewire:navigated", () => {
 },{once:true});
 </script>
 @endscript
-<div class="row">
+
 @if(isset($title))
-<div class="col-12 text-center">
-    <h4><strong>{{ $title }}</strong></h4>
-</div>
-@endif
-@if(count($headbtn)>0)
-<div class="col-12 text-center text-md-start">
-    <div class="btn-group mb-2" role="group">
-        @if(in_array('add',$headbtn))
-        <button type="button" wire:click="add" class="btn btn-primary" data-toggle='tooltip' title='add data' ><i class="bi bi-plus-lg"></i></button>
-        @endif
-        @if(in_array('pdf',$headbtn))
-        <button type="button" wire:click="generatePDF" class="btn btn-success" data-toggle='tooltip' title='export to pdf' ><i class="bi bi-filetype-pdf"></i></button>
-        @endif
-        @if(in_array('delete',$headbtn))
-        <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="delSel" class="btn btn-danger" data-toggle='tooltip' title='delete selected'><i class="bi bi-trash"></i></button>
-        @endif
-        @if(in_array('edit',$headbtn))
-        <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="editSel" class="btn btn-info" data-toggle='tooltip' title='edit selected'><i class="bi bi-pencil-square"></i></button>
-        @endif
+<div class="row">
+    <div class="col-12 text-center">
+        <h4><strong>{{ $title }}</strong></h4>
     </div>
 </div>
 @endif
-<div class="col-12" wire:ignore>
-    <table id="{{ $id }}" class="table display responsive table-striped nowrap" style="width:100%">
-        <thead>
-            <tr>
-                @if(!empty($model))
-                <th></th>
-                <th>ID</th>
-                @endif
-                <th>No</th>
-                @foreach($thead as $r)
-                <th>{{ $r }}</th>
+
+@if(count($headbtn)>0)
+<div class="row">
+    <div class="col-12 text-center text-md-start">
+        <div class="btn-group mb-2" role="group">
+            @if(in_array('add',$headbtn))
+            <button type="button" wire:click="add" class="btn btn-primary" data-toggle='tooltip' title='add data' ><i class="bi bi-plus-lg"></i></button>
+            @endif
+            @if(in_array('pdf',$headbtn))
+            <button type="button" wire:click="generatePDF" class="btn btn-success" data-toggle='tooltip' title='export to pdf' ><i class="bi bi-filetype-pdf"></i></button>
+            @endif
+            @if(in_array('delete',$headbtn))
+            <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="delSel" class="btn btn-danger" data-toggle='tooltip' title='delete selected'><i class="bi bi-trash"></i></button>
+            @endif
+            @if(in_array('edit',$headbtn))
+            <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="editSel" class="btn btn-info" data-toggle='tooltip' title='edit selected'><i class="bi bi-pencil-square"></i></button>
+            @endif
+        </div>
+    </div>
+</div>
+@endif
+<div class="row">
+    <div class="col-12" wire:ignore>
+        <table id="{{ $id }}" class="table display responsive table-striped nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    @if(!empty($model))
+                    <th></th>
+                    <th>ID</th>
+                    @endif
+                    <th>No</th>
+                    @foreach($thead as $r)
+                    <th>{{ $r }}</th>
+                    @endforeach
+                    @if(count($tbtn)>0)
+                    <th>Action</th>
+                    @endif
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($tdata as $key=>$row)
+                <tr>
+                    @if(!empty($model))
+                    <td></td>
+                    <td>{{ $row->id }}</td>
+                    @endif
+                    <td>{{1+$key++}}</td>
+                    @foreach($tbody as $v)
+                    <td>{{ $row->$v}}</td>
+                    @endforeach
+                    @if(count($tbtn)>0)
+                    <td></td>
+                    @endif
+                </tr>
                 @endforeach
-                @if(count($tbtn)>0)
-                <th>Action</th>
-                @endif
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($tdata as $key=>$row)
-            <tr>
-                @if(!empty($model))
-                <td></td>
-                <td>{{ $row->id }}</td>
-                @endif
-                <td>{{1+$key++}}</td>
-                @foreach($tbody as $v)
-                <td>{{ $row->$v}}</td>
-                @endforeach
-                @if(count($tbtn)>0)
-                <td></td>
-                @endif
-            </tr>
-            @endforeach
-        </tbody>
-        <tfoot>
-            <tr>
-                @if(!empty($model))
-                <th></th>
-                <th>ID</th>
-                @endif
-                <th>No</th>
-                @foreach($thead as $r)
-                <th>{{ $r }}</th>
-                @endforeach
-                @if(count($tbtn)>0)
-                <th>Action</th>
-                @endif
-            </tr>
-        </tfoot>
-    </table>
+            </tbody>
+            <tfoot>
+                <tr>
+                    @if(!empty($model))
+                    <th></th>
+                    <th>ID</th>
+                    @endif
+                    <th>No</th>
+                    @foreach($thead as $r)
+                    <th>{{ $r }}</th>
+                    @endforeach
+                    @if(count($tbtn)>0)
+                    <th>Action</th>
+                    @endif
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
