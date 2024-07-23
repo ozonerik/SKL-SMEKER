@@ -19,6 +19,7 @@
             </x-ui.modal>
 
             <x-ui.card title="Dashboard" class="card-primary card-outline" cancel="" submit="save">
+                <x-ui.infobox link="{{ route('home') }} " color="success" icon="bi bi-people-fill" title="jumlah user" value="100"/>
                 {{ print_r($inidatatable) }}
                 <x-ui.datatables id="mytable" title="Ini Datatable" model="inidatatable" :selectvalue="$inidatatable" :tdata="$user" :thead="['Nama','Email']" :tbody="['name','email']" :tbtn="['edit','delete']" :headbtn="['pdf','delete']"/>
                 <x-forms.input name="initext" type="text" id="nama" icon="bi bi-person" label="Nama"  placeholder="Nama" />

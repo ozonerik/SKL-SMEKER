@@ -13,23 +13,23 @@ use App\Livewire\Pages\Backend\Lockprofilepage;
 //Route::view('/', 'welcome');
 //Route::redirect('/', '/login');
 
-Route::get('/', Home::class); 
+Route::get('/', Home::class)->name('home');
 
-Route::get('/test', Testpage::class); 
+Route::get('/test', Testpage::class)->name('test');
 
 Route::get('/optimize', function () {
     Artisan::call('optimize:clear');
     return "Optimize Apps is cleared";
-});
+})->name('optimize');
 
 Route::get('/phpinfo', function () {
     return phpinfo();
-});
+})->name('phpinfo');
 
 Route::get('/create-symlink', function () {
     Artisan::call('storage:link');
     return "Symlink created successfully.";
-});
+})->name('symlink');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile', Profilepage::class)->name('profile');
