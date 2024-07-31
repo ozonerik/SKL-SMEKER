@@ -15,6 +15,17 @@ $btncolor=(isset($btncolor)) ? $btncolor : 'primary';
 $textsubmit=(isset($textsubmit)) ? $textsubmit : 'Submit';
 $textcancel=(isset($textcancel)) ? $textcancel : 'Cancel';
 @endphp
+
+@script 
+<script>
+    document.addEventListener('livewire:navigated', function () {
+        Livewire.on('{{ $id }}', function () {
+            $('#{{ $id }}').modal('show');
+        });
+    });
+</script>
+@endscript
+
 <div wire:ignore.self class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $idlabel }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

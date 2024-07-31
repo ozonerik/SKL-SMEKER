@@ -159,11 +159,14 @@ document.addEventListener("livewire:navigated", () => {
             @if(in_array('pdf',$headbtn))
             <button type="button" wire:click="generatePDF" class="btn btn-success" data-toggle='tooltip' title='export to pdf' ><i class="bi bi-filetype-pdf"></i></button>
             @endif
+            @if(in_array('import',$headbtn))
+            <button type="button" wire:click="onImport" class="btn btn-warning" data-toggle='tooltip' title='import from excel' ><i class="bi bi-upload"></i></button>
+            @endif
             @if(in_array('delete',$headbtn))
-            <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="delSel" class="btn btn-danger" data-toggle='tooltip' title='delete selected'><i class="bi bi-trash"></i></button>
+            <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="onDelSel" class="btn btn-danger" data-toggle='tooltip' title='delete selected'><i class="bi bi-trash"></i></button>
             @endif
             @if(in_array('edit',$headbtn))
-            <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="editSel" class="btn btn-info" data-toggle='tooltip' title='edit selected'><i class="bi bi-pencil-square"></i></button>
+            <button type="button" @if(count($selectvalue)==0) disabled @endif wire:click="onEditSel" class="btn btn-info" data-toggle='tooltip' title='edit selected'><i class="bi bi-pencil-square"></i></button>
             @endif
         </div>
     </div>
