@@ -67,8 +67,13 @@ class Profilepage extends Component
             $user->email_verified_at = null;
         }
 
-        $this->oldphoto = Auth::user()->photo;
-        $user->photo=StoreFile($this->photo,'photos',$this->oldphoto);
+        $this->oldphoto = Auth::user()->img;
+/*         if(Storage::disk('public')->exists($this->oldphoto)){
+            dd('ada file');
+        }else{
+            dd(Auth::user()->name);
+        } */
+        $user->img=StoreFile($this->photo,'photos',$this->oldphoto);
         $user->save();
         $user->syncRoles([$this->role]);
         $this->photo=null;

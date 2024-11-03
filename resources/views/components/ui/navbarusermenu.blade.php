@@ -1,10 +1,10 @@
 <li class="nav-item dropdown user-menu"> 
     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> 
-        <img src="{{ showimg(auth()->user()->photo,true) }}" class="user-image rounded-circle shadow" alt="User Image"> 
+        <img src="{{ showimg(auth()->user()->img,true) }}" class="user-image rounded-circle shadow" alt="User Image"> 
         <span class="d-none d-md-inline">{{ Auth::user()->name }}</span> 
     </a>
     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end"> <!--begin::User Image-->
-        <li class="user-header text-bg-primary"> <img src="{{ showimg(auth()->user()->photo,true) }}" class="rounded-circle shadow" alt="User Image">
+        <li class="user-header text-bg-primary"> <img src="{{ showimg(auth()->user()->img,true) }}" class="rounded-circle shadow" alt="User Image">
             <p>
                 {{ auth()->user()->name }} - {{ \Illuminate\Support\Str::of(auth()->user()->getRoleNames()->implode(''))->ucfirst() }}
                 <small>Member since {{ \Carbon\Carbon::parse(auth()->user()->created_at)->format('M. Y') }}</small>
