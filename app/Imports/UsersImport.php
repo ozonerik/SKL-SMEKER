@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
+use Carbon\Carbon;
 
 class UsersImport implements ToCollection,WithHeadingRow
 {
@@ -26,6 +27,7 @@ class UsersImport implements ToCollection,WithHeadingRow
                 'name'     => $row['name'],
                 'email'    => $row['email'], 
                 'password' => Hash::make($row['password']),
+                'email_verified_at' => Carbon::now(),
             ]);
 
             $user->assignRole('user');
